@@ -178,3 +178,14 @@ exibirListaDescontos = do
     hClose arq
 
 
+exibirListaClientesCadastrados :: IO()
+exibirListaClientesCadastrados = do
+    putStrLn"-----CLIENTES CADASTRADOS-----\n"
+    arq <- openFile "arquivos/clientes.txt" ReadMode
+    conteudo <- hGetContents arq
+    putStrLn conteudo
+    hClose arq
+
+usuarioAssentoOcupado :: IO()
+usuarioAssentoOcupado = do
+    putStrLn"\nErro: usuário já está ocupando um assento."
