@@ -211,35 +211,24 @@ opcaoAssento v (x:xs) | (aux v x) == True = opcaoAssento v xs
                    | otherwise = x:opcaoAssento v xs
 
 
-temAssento :: String -> [[String]] -> Bool
-temAssento _ [] = False
-temAssento c (x:xs) | not (headAssentoDisponivel c x) = temAssento c xs
-                    | otherwise = True
+primeira :: [[String]] -> String
+primeira [] = ""
+primeira (x:xs) = head x ++ "," ++ "\n" ++ primeira xs
 
-headAssentoDisponivel :: String -> [String] -> Bool
-headAssentoDisponivel _ [] = False
-headAssentoDisponivel c (x:xs) = c == x
+sortLista :: [String] -> [String]
+sortLista lista = ordena [] lista
 
-escreveAssento1 :: String -> IO()
-escreveAssento1 n = do
+ordena :: [String] -> [String] -> [String]
+ordena lista_ordenada [] = lista_ordenada
+ordena lista_ordenada listaOriginal = ordena (lista_ordenada++[getMenor listaOriginal]) (removeMenor listaOriginal)
 
-    arq <- openFile "arquivos/assentos_executivo_disponivel.txt" WriteMode
-    hPutStr arq n
-    hFlush arq
-    hClose arq
+getMenor :: [String] -> String
+getMenor [x] = x
+getMenor(x:xs) | ( parseToInt2 (x) < parseToInt2 (maxi)) = x
+               | otherwise = maxi
+             where maxi = getMenor xs
 
-escreveAssento2 :: String -> IO()
-escreveAssento2 n = do
-
-    arq <- openFile "arquivos/assentos_economico_disponivel.txt" WriteMode
-    hPutStr arq n
-    hFlush arq
-    hClose arq
-
-escreveCompra :: String -> IO()
-escreveCompra n = do
-    
-    arq <- openFile "arquivos/compra.txt" WriteMode
-    hPutStr arq n
-    hFlush arq
-    hClose arq
+removeMenor :: [String] -> [String]
+removeMenor [] = []
+removeMenor (x:xs) | (x == getMenor(x:xs)) = xs
+                   | otherwise = (x:removeMenor xs)
