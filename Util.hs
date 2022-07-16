@@ -236,3 +236,18 @@ removeMenor (x:xs) | (x == getMenor(x:xs)) = xs
 listaVazia :: [String] -> Bool 
 listaVazia [] = True
 listaVazia (x:xs) = False
+
+renovaAssentos :: IO ()
+renovaAssentos = do
+    novosEc <- readFile "arquivos/assentos_economico.txt"
+    novosEx <- readFile "arquivos/assentos_executivo.txt"
+
+    let assentosEc = ((Data.List.map (split(==',') ) (lines novosEc)))
+    let assentosEx = ((Data.List.map (split(==',') ) (lines novosEx)))
+
+    writeFile "arquivos/assentos_economico_disponivel.txt" novosEc
+    writeFile "arquivos/assentos_executivo_disponivel.txt" novosEx
+
+    writeFile "arquivos/compra.txt" ""
+
+    writeFile "arquivos/assentos_indisponiveis.txt" ""

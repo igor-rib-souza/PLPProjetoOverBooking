@@ -56,6 +56,8 @@ logaFuncionario menu = do
         then do {listaValores menu; logaFuncionario menu}
     else if op == "11"
         then do {alteraAssento menu; logaFuncionario menu}
+    else if op == "*"
+        then do {Util.renovaAssentos; logaFuncionario menu}
     else do
         {Mensagens.opcaoInvalida; logaFuncionario menu}
 

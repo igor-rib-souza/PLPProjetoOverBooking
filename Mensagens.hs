@@ -159,7 +159,8 @@ menuFuncionario = do
     putStrLn"[8] Voltar ao menu principal"
     putStrLn"[9] Exibir assentos indisponíveis"
     putStrLn"[10] Exibir valores para cada tipo de assento"
-    putStrLn"[11] Alterar assento de um cliente\n"
+    putStrLn"[11] Alterar assento de um cliente"
+    putStrLn"[*] Restaure o sistema para o estado inicial\n"
 
 listaDescontos :: IO()
 listaDescontos = do
