@@ -232,3 +232,7 @@ removeMenor :: [String] -> [String]
 removeMenor [] = []
 removeMenor (x:xs) | (x == getMenor(x:xs)) = xs
                    | otherwise = (x:removeMenor xs)
+
+listaVazia :: [String] -> Bool 
+listaVazia [] = True
+listaVazia (x:xs) = False

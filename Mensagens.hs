@@ -39,7 +39,7 @@ cadastroEfetuado = do
 cadastrarNome :: IO()
 cadastrarNome = do
     putStrLn("\n       -----CADASTRO DE USUÁRIO-----")
-    putStr("\nInforme o nome: ")
+    putStrLn("\nInforme o nome: ")
 
 cadastrarIdAssento :: IO()
 cadastrarIdAssento = do
@@ -84,7 +84,7 @@ descontoExcluido = do
 
 getCpf :: IO()
 getCpf = do
-    putStr"Insira seu CPF: "
+    putStrLn"Insira seu CPF: "
 
 opcaoInvalida :: IO ()
 opcaoInvalida =
@@ -137,6 +137,12 @@ assentoInvalido :: IO()
 assentoInvalido = do
     putStr("\nASSENTO INDISPONÍVEL\n")
 
+loginouCadastroCliente :: IO()
+loginouCadastroCliente = do
+    putStrLn("Bem vindo a area dos clientes! digite:")
+    putStrLn("[1] Se voce ja tem um log in conosco")
+    putStrLn("[2] Se voce deseja se cadastrar")
+
 menuFuncionario :: IO()
 menuFuncionario = do
     putStrLn"\n       -----FUNCIONÁRIO-----"
@@ -170,3 +176,5 @@ exibirListaDescontos = do
     conteudo <- hGetContents arq
     putStrLn conteudo
     hClose arq
+
+

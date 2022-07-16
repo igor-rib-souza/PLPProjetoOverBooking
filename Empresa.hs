@@ -14,23 +14,23 @@ menuEmpresa menu = do
                 funcionalidade <- Util.lerEntradaString
 
                 if funcionalidade == "1"
-                    then do cadastroDeFuncionario menu
+                    then do {cadastroDeFuncionario menu; Empresa.menuEmpresa menu}
                 else if funcionalidade == "2"
-                    then do alteraDadoFuncionario menu
+                    then do {alteraDadoFuncionario menu;Empresa.menuEmpresa menu}
                 else if funcionalidade == "3"
-                    then do excluirFuncionario menu
+                    then do {excluirFuncionario menu;Empresa.menuEmpresa menu}
                 else if funcionalidade == "4"
-                    then do listaTodosFuncionarios menu
+                    then do {listaTodosFuncionarios menu;Empresa.menuEmpresa menu}
                 else if funcionalidade == "5"
-                    then do listaTodosAssentosDisponiveis menu
+                    then do {listaTodosAssentosDisponiveis menu;Empresa.menuEmpresa menu}
                 else if funcionalidade == "6"
-                  then do valoresDeCadaTipoo menu
+                  then do {valoresDeCadaTipoo menu;Empresa.menuEmpresa menu}
                 else if funcionalidade == "7"
-                  then do cadastroDeDescontos menu
+                  then do {cadastroDeDescontos menu;Empresa.menuEmpresa menu}
                 else if funcionalidade == "8"
-                  then do alteraDesconto menu
+                  then do {alteraDesconto menu;Empresa.menuEmpresa menu}
                 else if funcionalidade == "9"
-                  then do excluirDesconto menu
+                  then do {excluirDesconto menu;Empresa.menuEmpresa menu}
                 else do
                   {putStrLn("\nError: OPÇÃO INVÁLIDA\n"); Empresa.menuEmpresa menu}
 
@@ -48,7 +48,7 @@ cadastroDeFuncionario menu = do
                 let lista = ((Data.List.map (Util.wordsWhen(==',') ) (lines arquivo)))
 
                 if (Util.temCadastro cpf lista)
-                    then do {Mensagens.usuarioNaoCadastrado; cadastroDeFuncionario menu}
+                    then do {Mensagens.usuarioCadastrado; cadastroDeFuncionario menu}
                 else do
                     let funcionarioString = cpf ++ "," ++ nome ++ "\n"
                     appendFile "arquivos/funcionarios.txt" (funcionarioString)
@@ -125,13 +125,17 @@ getLinesAssentos h = hGetContents h >>= return . lines
 
 listaTodosAssentosDisponiveis:: (IO()) -> IO()
 listaTodosAssentosDisponiveis menu = do
-                arquivo <- openFile "arquivos/assentos.txt" ReadMode
-                linhasAssentos <- getLinesAssentos arquivo
-                let listaDeAssentos = ((Data.List.map (split(==',') ) linhasAssentos))
-                putStr("\nAtualmente temos os seguintes assentos executivos e econômicos no sistema: ")
+                arquivo <- readFile  "arquivos/assentos_economico_disponivel.txt"
+                arquivo1 <- readFile "arquivos/assentos_executivo_disponivel.txt"
+                
+                let listaDeAssentos = ((Data.List.map (split(==',') ) (lines arquivo)))
+                let listaDeAssentos1 = ((Data.List.map (split(==',') ) (lines arquivo1)))
+                evaluate (force arquivo)
+                evaluate (force arquivo1)
+                putStr("\nAtualmente temos os seguintes assentos econômicos no sistema: ")
                 print(listaDeAssentos)
-
-
+                putStr("\nE os seguintes assentos executivos:")
+                print(listaDeAssentos1)
 
 -- Cria descontos para assentos
 cadastroDeDescontos:: (IO()) -> IO()
