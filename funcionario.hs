@@ -335,8 +335,7 @@ realizarCompra menu = do
 
 alteraAssento :: (IO()) -> IO()
 alteraAssento menu = do
-    putStrLn("Digite seu cpf para verificarmos seu assento")
-    Mensagens.informeCpf
+    putStrLn("Digite o cpf do cliente para verificarmos os assentos do mesmo: ")
     cpf <- Util.lerEntradaString
     arquivo <- readFile "arquivos/compra.txt"
     let listaDeCompra= ((Data.List.map (split(==',') ) (lines arquivo)))
@@ -416,7 +415,7 @@ alteraAssento menu = do
 
                     let aux = Util.primeiroAssento(Util.opcaoVaga tipoAssento listaDeAssentosEconomicoDisponivel)
                     Util.escreveAssento2 ""
-                    appendFile "arquivos/assentos_economico_disponivel.txt" (aux)
+                    appendFile "arquivos/assentos_economico_disponivel.txt" (aux)    
 
         else
             Mensagens.opcaoInvalida

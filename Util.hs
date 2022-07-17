@@ -130,6 +130,14 @@ escreveAssento2 n = do
     hFlush arq
     hClose arq
 
+escreveAssento4 :: String -> IO()
+escreveAssento4 n = do
+
+    arq <- openFile "arquivos/assentos_disponiveis.txt" WriteMode
+    hPutStr arq n
+    hFlush arq
+    hClose arq
+
 ehCadastrado :: String -> [[String]] -> Bool
 ehCadastrado _ [] = False
 ehCadastrado c (x:xs) | ((headCadastrado c x) == False) = ehCadastrado c xs
