@@ -39,23 +39,25 @@ logaFuncionario menu = do
     else if op == "2"
         then do {realizarCompra menu; logaFuncionario menu}
     else if op == "3"
-        then do {Mensagens.exibirListaClientesCadastrados; logaFuncionario menu}
+        then do {cancelaCompras menu; logaFuncionario menu}
     else if op == "4"
-        then do {excluirCliente2 menu; logaFuncionario menu}
+        then do {Mensagens.exibirListaClientesCadastrados; logaFuncionario menu}
     else if op == "5"
-        then do {Funcionario.cadastrarCliente menu; logaFuncionario menu}
+        then do {excluirCliente2 menu; logaFuncionario menu}
     else if op == "6"
-        then do {alteraDadoCliente menu;logaFuncionario menu}
+        then do {Funcionario.cadastrarCliente menu; logaFuncionario menu}
     else if op == "7"
-        then do {recomendaAssento menu; logaFuncionario menu}
+        then do {alteraDadoCliente menu;logaFuncionario menu}
     else if op == "8"
-        then do menu
+        then do {recomendaAssento menu; logaFuncionario menu}
     else if op == "9"
         then do {listaTodosAssentosIndisponiveis menu; logaFuncionario menu}
     else if op == "10"
         then do {listaValores menu; logaFuncionario menu}
     else if op == "11"
         then do {alteraAssento menu; logaFuncionario menu}
+    else if op == "12"
+        then do menu
     else if op == "*"
         then do {Util.renovaAssentos; logaFuncionario menu}
     else do
@@ -419,3 +421,23 @@ alteraAssento menu = do
 
         else
             Mensagens.opcaoInvalida
+
+cancelaCompras :: (IO()) -> IO()
+cancelaCompras menu = do
+    arquivo <- readFile "arquivos/compra.txt"
+    let listaDeCompra= ((Data.List.map (split(==',') ) (lines arquivo)))
+    evaluate (force arquivo)
+    putStr("\nAtualmente temos os seguintes compras no sistema: ")
+    print(listaDeCompra)
+
+    putStrLn("\nDigite o CPF do cliente ao qual deseja cancelar as compras: ")
+    cpf <- Util.lerEntradaString
+
+    if not (Util.temCadastro cpf listaDeCompra)
+        then do {Mensagens.usuarioInvalido; cancelaCompras menu}     
+    else do 
+        let clientesExc = Util.primeiraHorarioCpf (Util.opcaoVaga cpf listaDeCompra)
+        Util.escreveCompra ""
+        
+        appendFile "arquivos/compra.txt" (clientesExc)
+        putStrLn("Compras canceladas com sucesso")

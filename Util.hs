@@ -249,12 +249,17 @@ renovaAssentos :: IO ()
 renovaAssentos = do
     novosEc <- readFile "arquivos/assentos_economico.txt"
     novosEx <- readFile "arquivos/assentos_executivo.txt"
+    novosdisp <- readFile "arquivos/assentos.txt"
 
     let assentosEc = ((Data.List.map (split(==',') ) (lines novosEc)))
     let assentosEx = ((Data.List.map (split(==',') ) (lines novosEx)))
+    let assentosdisp = ((Data.List.map (split(==',') ) (lines novosdisp)))
+
+    writeFile "arquivos/assentos_disponiveis.txt" ""
 
     writeFile "arquivos/assentos_economico_disponivel.txt" novosEc
     writeFile "arquivos/assentos_executivo_disponivel.txt" novosEx
+    writeFile "arquivos/assentos_disponiveis.txt" novosdisp
 
     writeFile "arquivos/compra.txt" ""
 
