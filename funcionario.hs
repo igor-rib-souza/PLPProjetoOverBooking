@@ -21,7 +21,7 @@ verificaFuncionario menu = do
     let lista = Data.List.map (Util.split(==',') ) (lines arq)
 
     if Util.temCadastro cpf lista
-        then do {putStr"\nBem vindo de volta!\n"; logaFuncionario menu}
+        then do {putStrLn"\nBem vindo de volta!\n"; logaFuncionario menu}
     else do
         {Mensagens.usuarioInvalido; menu}
 
@@ -79,9 +79,9 @@ escolheAssento = do
         then do
             putStrLn"\nVocê já está cadastrado, pode continuar.\n"
 
-            putStr"\n"
+            putStrLn"\n"
             Util.escolheAssento cpf
-            putStr""
+            putStrLn""
     else do
         putStrLn"Informe o nome: "
         nome <- Util.lerEntradaString
@@ -90,7 +90,7 @@ escolheAssento = do
         appendFile "arquivos/clientes.txt" clienteStr
 
         Util.escolheAssento cpf
-    putStr""
+    putStrLn""
 
 --TALVEZ isso cause um erro (não causa)
 getlines :: Handle -> IO [String]
@@ -105,19 +105,19 @@ excluirCliente menu = do
     arq <- openFile "arquivos/clientes.txt" ReadMode
     xs <- getlines arq
     let lista = Data.List.map (split(==',') ) xs
-    putStr"\nAtualmente temos os seguintes clientes no sistema: "
+    putStrLn"\nAtualmente temos os seguintes clientes no sistema: "
     print lista
 
     if not (Util.temCadastro cpf lista)
         then do {Mensagens.usuarioInvalido}
     else do
-        putStr""
+        putStrLn""
         let clientesExc = Util.primeiraCliente (Util.opcaoAssento cpf lista)
         Util.escreveCliente ""
 
         appendFile "arquivos/clientes.txt" clientesExc
 
-        putStr"\nCliente excluído com sucesso!\n"
+        putStrLn"\nCliente excluído com sucesso!\n"
 
 
 
@@ -132,10 +132,9 @@ getLinesClientes h = hGetContents h >>= return . lines
 excluirCliente2 :: (IO()) -> IO()
 excluirCliente2 menu = do
     arquivo <- readFile  "arquivos/clientes.txt"  
-    --let listaDeCliente = ((Data.List.map (splitLacerda(==","))linhas))
     let listaDeCliente = ((Data.List.map (split(==',') ) (lines arquivo)))
     evaluate (force arquivo)
-    putStr"\nAtualmente temos os seguintes clientes cadastrados:"
+    putStrLn"\nAtualmente temos os seguintes clientes cadastrados:"
     print(listaDeCliente)
 
     putStrLn"Informe o CPF do cliente que deseja excluir:"
@@ -183,7 +182,7 @@ listaValores menu = do
                 arquivo <- openFile "arquivos/valoresDeCadaTipo.txt" ReadMode
                 linhasAssentos <- getLinesAssentos arquivo
                 let listaDeAssentos = ((Data.List.map (split(==',') ) linhasAssentos))
-                putStr("\nTemos os seguintes valores para nossos assentos:")
+                putStrLn("\nTemos os seguintes valores para nossos assentos:")
                 print(listaDeAssentos)
 
 listaTodosAssentosIndisponiveis:: (IO()) -> IO()
@@ -191,7 +190,7 @@ listaTodosAssentosIndisponiveis menu = do
                 arquivo <- readFile  "arquivos/assentos_indisponiveis.txt"
                 let listaDeAssentos = ((Data.List.map (split(==',') ) (lines arquivo)))
                 evaluate (force arquivo)
-                putStr("\nAtualmente os seguintes assentos estão indisponíveis: ")
+                putStrLn("\nAtualmente os seguintes assentos estão indisponíveis: ")
                 print(listaDeAssentos)
 
 
@@ -204,9 +203,9 @@ listaTodosAssentosDisponiveis menu = do
                 let listaDeAssentos1 = ((Data.List.map (split(==',') ) (lines arquivo1)))
                 evaluate (force arquivo)
                 evaluate (force arquivo1)
-                putStr("\nAtualmente temos os seguintes assentos econômicos no sistema: ")
+                putStrLn("\nAtualmente temos os seguintes assentos econômicos no sistema: ")
                 print(listaDeAssentos)
-                putStr("\nE os seguintes assentos executivos:")
+                putStrLn("\nE os seguintes assentos executivos:")
                 print(listaDeAssentos1)
 
 recomendaAssento :: (IO()) -> IO()
@@ -228,19 +227,14 @@ recomendaAssento menu = do
 alteraDadoCliente :: (IO()) -> IO()
 alteraDadoCliente menu = do
     arquivo <- readFile "arquivos/clientes.txt"
-    --linhasCliente <- getLinesClientes arquivo
-
     let lista = ((Data.List.map (split(==',') ) (lines arquivo)))
     evaluate (force arquivo)
 
-
-    putStr("\nAtualmente temos os seguintes clientes no sistema: ")
+    putStrLn("\nAtualmente temos os seguintes clientes no sistema: ")
     print(lista)
 
     putStrLn("Informe o CPF do Cliente que deseja alterar: ")
     cpf <- Util.lerEntradaString
-
-    
 
     if not (Util.temCadastro cpf lista)
         then do {Mensagens.usuarioInvalido; excluirCliente2 menu}     
@@ -255,7 +249,6 @@ alteraDadoCliente menu = do
         
         let clienteStr = cpf ++ "," ++ idade ++ "\n"
         appendFile "arquivos/clientes.txt" (clienteStr)
-        --Mensagens.cadastroEfetuado
         Mensagens.clienteAlterado
 
         
@@ -296,15 +289,15 @@ realizarCompra menu = do
     if not (Util.temCadastro cpf listaDeCliente)
         then do {Mensagens.usuarioInvalido; realizarCompra menu}
     else do
-        putStr("Qual tipo de classe vc deseja? [1]Executivo ou [2]Economico\n")
+        putStrLn("Qual tipo de classe vc deseja? [1]Executivo ou [2]Economico\n")
         tipoClasse <- Util.lerEntradaString
      
         if (tipoClasse == "1")
             then do
-                putStr("Os assentos disponíveis são: ")
+                putStrLn("Os assentos disponíveis são: ")
                 print(listaDeAssentosExecutivoDisponivel)
 
-                putStr("Qual assento você deseja? ")
+                putStrLn("Qual assento você deseja? ")
                 tipoAssento <- Util.lerEntradaString
 
                 if not (Util.temAssento tipoAssento listaDeAssentosExecutivoDisponivel)
@@ -320,10 +313,10 @@ realizarCompra menu = do
         
         else if (tipoClasse == "2")
             then do
-                putStr("Os assentos disponíveis são: ")
+                putStrLn("Os assentos disponíveis são: ")
                 print(listaDeAssentosEconomicoDisponivel)
 
-                putStr("Qual assento você deseja? ")
+                putStrLn("Qual assento você deseja? ")
                 tipoAssento <- Util.lerEntradaString
 
                 if not (Util.temAssento tipoAssento listaDeAssentosEconomicoDisponivel)
@@ -349,7 +342,7 @@ alteraAssento menu = do
     let listaDeCompra= ((Data.List.map (split(==',') ) (lines arquivo)))
     evaluate (force arquivo)
 
-    putStr("\nAtualmente temos os seguintes compras no sistema: ")
+    putStrLn("\nAtualmente temos os seguintes compras no sistema: ")
     print(listaDeCompra)
 
     if not (Util.temCadastro cpf listaDeCompra)
@@ -387,15 +380,15 @@ alteraAssento menu = do
     if not (Util.temCadastro cpf listaDeCliente)
         then do {Mensagens.usuarioInvalido; realizarCompra menu}
     else do
-        putStr("Qual tipo do seu novo assento? [1]Executivo ou [2]Economico\n")
+        putStrLn("Qual tipo do seu novo assento? [1]Executivo ou [2]Economico\n")
         tipoClasse <- Util.lerEntradaString
      
         if (tipoClasse == "1")
             then do
-                putStr("Os assentos disponíveis são: ")
+                putStrLn("Os assentos disponíveis são: ")
                 print(listaDeAssentosExecutivoDisponivel)
 
-                putStr("Qual assento você deseja? ")
+                putStrLn("Qual assento você deseja? ")
                 tipoAssento <- Util.lerEntradaString
 
                 if not (Util.temAssento tipoAssento listaDeAssentosExecutivoDisponivel)
@@ -409,10 +402,10 @@ alteraAssento menu = do
                     appendFile "arquivos/assentos_executivo_disponivel.txt" (aux)
         else if (tipoClasse == "2")
             then do
-                putStr("Os assentos disponíveis são: ")
+                putStrLn("Os assentos disponíveis são: ")
                 print(listaDeAssentosEconomicoDisponivel)
 
-                putStr("Qual assento você deseja? ")
+                putStrLn("Qual assento você deseja? ")
                 tipoAssento <- Util.lerEntradaString
 
                 if not (Util.temAssento tipoAssento listaDeAssentosEconomicoDisponivel)

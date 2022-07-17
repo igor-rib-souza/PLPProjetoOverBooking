@@ -31,6 +31,8 @@ menuEmpresa menu = do
                   then do {alteraDesconto menu;Empresa.menuEmpresa menu}
                 else if funcionalidade == "9"
                   then do {excluirDesconto menu;Empresa.menuEmpresa menu}
+                else if funcionalidade == "10"
+                    then do menu
                 else do
                   {putStrLn("\nError: OPÇÃO INVÁLIDA\n"); Empresa.menuEmpresa menu}
 
@@ -59,13 +61,13 @@ alteraDadoFuncionario :: (IO()) -> IO()
 alteraDadoFuncionario menu = do
     arquivo <- readFile "arquivos/funcionarios.txt"
     
-    putStr("Informe o CPF do Funcionário que deseja alterar: ")
+    putStrLn("Informe o CPF do Funcionário que deseja alterar: ")
     cpf <- Util.lerEntradaString
 
     let lista = ((Data.List.map (split(==',') ) (lines arquivo)))
     evaluate (force arquivo)
 
-    putStr("\nAtualmente temos os seguintes funcionários no sistema: ")
+    putStrLn("\nAtualmente temos os seguintes funcionários no sistema: ")
     print(lista)
 
     if not (Util.temCadastro cpf lista)
@@ -93,10 +95,10 @@ excluirFuncionario menu = do
                 arquivo <- openFile "arquivos/funcionarios.txt" ReadMode
                 linhasFunc <- getLinesFuncionarios arquivo
                 let listaDeFunc = ((Data.List.map (split(==',') ) linhasFunc))
-                putStr("\nAtualmente temos os seguintes funcionários no sistema: ")
+                putStrLn("\nAtualmente temos os seguintes funcionários no sistema: ")
                 print(listaDeFunc)
 
-                putStr("\nInforme o CPF do funcionário que deseja excluir: ")
+                putStrLn("\nInforme o CPF do funcionário que deseja excluir: ")
                 cpf <- Util.lerEntradaString
                 print(cpf)
                 if not (Util.temCadastro cpf listaDeFunc)
@@ -115,7 +117,7 @@ listaTodosFuncionarios menu = do
                 arquivo <- openFile "arquivos/funcionarios.txt" ReadMode
                 linhasFunc <- getLinesFuncionarios arquivo
                 let listaDeFunc = ((Data.List.map (split(==',') ) linhasFunc))
-                putStr("\nAtualmente temos os seguintes funcionários no sistema: ")
+                putStrLn("\nAtualmente temos os seguintes funcionários no sistema: ")
                 print(listaDeFunc)
 
 
@@ -132,9 +134,9 @@ listaTodosAssentosDisponiveis menu = do
                 let listaDeAssentos1 = ((Data.List.map (split(==',') ) (lines arquivo1)))
                 evaluate (force arquivo)
                 evaluate (force arquivo1)
-                putStr("\nAtualmente temos os seguintes assentos econômicos no sistema: ")
+                putStrLn("\nAtualmente temos os seguintes assentos econômicos no sistema: ")
                 print(listaDeAssentos)
-                putStr("\nE os seguintes assentos executivos:")
+                putStrLn("\nE os seguintes assentos executivos:")
                 print(listaDeAssentos1)
 
 -- Cria descontos para assentos
@@ -162,13 +164,13 @@ alteraDesconto :: (IO()) -> IO()
 alteraDesconto menu = do
     arquivo <- readFile "arquivos/descontos.txt"
     
-    putStr("Informe o tipo do assento: ")
+    putStrLn("Informe o tipo do assento: ")
     tipot <- Util.lerEntradaString
 
     let listaDeDescontos = ((Data.List.map (split(==',') ) (lines arquivo)))
     evaluate (force arquivo)
 
-    putStr("\nAtualmente temos os seguintes tipos de descontos no sistema: ")
+    putStrLn("\nAtualmente temos os seguintes tipos de descontos no sistema: ")
     print(listaDeDescontos)
 
     if not (Util.temCadastro tipot listaDeDescontos)
@@ -196,10 +198,10 @@ excluirDesconto menu = do
                 arquivo <- openFile "arquivos/descontos.txt" ReadMode
                 linhasDescontos <- getLinesDesconto arquivo
                 let listaDeDescontos = ((Data.List.map (split(==',') ) linhasDescontos))
-                putStr("\nAtualmente temos os seguintes descontos relacionados a tipos de poltrona no sistema: ")
+                putStrLn("\nAtualmente temos os seguintes descontos relacionados a tipos de poltrona no sistema: ")
                 print(listaDeDescontos)
 
-                putStr("\nInforme o TIPO da poltrona que deseja excluir: ")
+                putStrLn("\nInforme o TIPO da poltrona que deseja excluir: ")
                 tipo <- Util.lerEntradaString
 
                 if not (Util.temCadastro tipo listaDeDescontos)
@@ -221,5 +223,5 @@ valoresDeCadaTipoo menu = do
                 arquivo <- openFile "arquivos/valoresDeCadaTipo.txt" ReadMode
                 linhasValores <- getLinesValoresDeCadaTipo arquivo
                 let listaDeValores = ((Data.List.map (split(==',') ) linhasValores))
-                putStr("\nAtualmente temos os seguintes valores relacionados aos tipos de assentos no sistema: ")
+                putStrLn("\nAtualmente temos os seguintes valores relacionados aos tipos de assentos no sistema: ")
                 print(listaDeValores)

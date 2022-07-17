@@ -80,28 +80,27 @@ verificaCliente menu = do
 
     arq <- readFile "arquivos/clientes.txt"
     let lista = Data.List.map (Util.split(==',') ) (lines arq)
+    evaluate(force lista)
 
     if Util.temCadastro cpf lista
         then do {putStr"\nBem vindo de volta!\n"; loginCliente menu}
     else do
         {Mensagens.usuarioInvalido; menu}
 
--- alterar cadastro do cliente
 alteraDadoCliente :: (IO()) -> IO()
 alteraDadoCliente menu = do
     arquivo <- readFile "arquivos/clientes.txt"
-
-    putStrLn("Informe o CPF do Cliente que deseja alterar: ")
-    cpf <- Util.lerEntradaString
-
     let lista = ((Data.List.map (split(==',') ) (lines arquivo)))
     evaluate (force arquivo)
 
     putStrLn("\nAtualmente temos os seguintes clientes no sistema: ")
     print(lista)
 
+    putStrLn("Informe o CPF do Cliente que deseja alterar: ")
+    cpf <- Util.lerEntradaString
+
     if not (Util.temCadastro cpf lista)
-        then do {Mensagens.usuarioInvalido; excluirCliente menu}     
+        then do {Mensagens.usuarioInvalido; excluirCliente2 menu}     
     else do 
         putStrLn("Nova Idade: ")
         idade <- Util.lerEntradaString
@@ -115,9 +114,6 @@ alteraDadoCliente menu = do
         appendFile "arquivos/clientes.txt" (clienteStr)
         Mensagens.clienteAlterado
 
-        loginCliente menu
-
-    
 -- #
 getLinesClientes :: Handle -> IO [String]
 getLinesClientes h = hGetContents h >>= return . lines
@@ -146,6 +142,25 @@ excluirCliente menu = do
                     appendFile "arquivos/clientes.txt" (clientesExc)
                     Mensagens.clienteExcluido
 
+excluirCliente2 :: (IO()) -> IO()
+excluirCliente2 menu = do
+    arquivo <- readFile  "arquivos/clientes.txt"  
+    let listaDeCliente = ((Data.List.map (split(==',') ) (lines arquivo)))
+    evaluate (force arquivo)
+    putStrLn"\nAtualmente temos os seguintes clientes cadastrados:"
+    print(listaDeCliente)
+
+    putStrLn"Informe o CPF do cliente que deseja excluir:"
+    cpf <- Util.lerEntradaString 
+    print(cpf)
+    if not (Util.temCadastro cpf listaDeCliente)
+        then do {Mensagens.usuarioInvalido; excluirCliente2 menu}
+    else do
+        let clientes = Util.primeiraHorarioCpf (Util.opcaoAssento cpf listaDeCliente)
+        Util.escreveCliente ""
+        appendFile "arquivos/clientes.txt" (clientes)
+        Mensagens.clienteExcluido
+                    
 
 getLinesAssentos :: Handle -> IO [String]
 getLinesAssentos h = hGetContents h >>= return . lines
