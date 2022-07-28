@@ -25,7 +25,7 @@ menuEmpresa:-
     writeln("[9] Excluir descontos"),
     writeln("[10] Voltar ao menu principal\n").
 
-cadastroEfetuado:-writeln
+cadastroEfetuado:-
     writeln("\nCADASTRADO EFETUADO COM SUCESSO!").
 
 cadastrarNome:-
