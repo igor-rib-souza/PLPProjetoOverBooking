@@ -1,5 +1,6 @@
 :- (initialization main).
 :- include('mensagens.pl').
+:- include('cliente.pl').
 
 main :-
     writeln("\n--------------------Seja bem vindo ao sistema OVERBOOKING!--------------------\n"),
@@ -8,7 +9,7 @@ main :-
     escolheOpcao(Opcao),
     halt.
 
-escolheOpcao(1):- writeln("Entrou na area do cliente"),(main).
+escolheOpcao(1):- loginCliente(main).
 escolheOpcao(2):- writeln("Entrou na area do funcionario"),(main).
 escolheOpcao(3):- writeln("Entrou na area da empresa"),(main).
 escolheOpcao(4):- halt.

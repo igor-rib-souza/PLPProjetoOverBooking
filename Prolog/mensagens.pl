@@ -89,6 +89,8 @@ menuCliente:-
     writeln("\n       -----Cliente-----"),
     writeln("\nOlá, Cliente!"),
     writeln("\nComo deseja prosseguir?"),
+    /*funcionalidade[0] apenas para teste, excluir depois*/
+    writeln("[0] Cadastrar cliente"), 
     writeln("[1] Alterar dados no meu cadastro"),
     writeln("[2] Deletar meu cadastro no sistema"),
     writeln("[3] Exibir lista de assentos disponíveis para compra"),
