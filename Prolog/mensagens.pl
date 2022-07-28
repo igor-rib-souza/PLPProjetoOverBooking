@@ -11,7 +11,7 @@ opcaoInvalida:-
 mensagemSaida:-
     writeln("\nAté mais!\n").
 
-menuEmpresa:-
+menuEmpresaa:-
     writeln("\n       -----Menu da Empresa-----"),
     writeln("\nComo deseja prosseguir?"),
     writeln("[1] Cadastrar funcionário"),
@@ -25,7 +25,7 @@ menuEmpresa:-
     writeln("[9] Excluir descontos"),
     writeln("[10] Voltar ao menu principal\n").
 
-cadastroEfetuado:-writeln
+cadastroEfetuado:-
     writeln("\nCADASTRADO EFETUADO COM SUCESSO!").
 
 cadastrarNome:-
@@ -43,7 +43,9 @@ cadastrarDesconto:-
     writeln("\n       -----CADASTRO DE DESCONTO-----"),
     writeln("Insira tipo da poltrona: ").
 
-    
+descontoJaCadastrado:-
+    writeln("\nJÁ POSSUI UM DESCONTO COM ESSE TIPO NO SISTEMA!").
+
 funcionarioExcluido:-
     writeln("\nFUNCIONÁRIO EXCLUIDO COM SUCESSO!").
 
