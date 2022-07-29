@@ -21,7 +21,32 @@ contemMember(Busca, [H|T], R):-
     ).
 
 /*  Escreve o funcionário no arquivo csv. */
-cadastraCliente(Cpf, Nome):-
+cadastraCliente(Cpf, Idade):-
     open('./dados/clientes.csv', append, Fluxo),
-    writeln(Fluxo, (Cpf, Nome)),
+    writeln(Fluxo, (Cpf, Idade)),
     close(Fluxo).
+
+/*
+Gera a lista que queremos excluir da lista de lista passada como parâmetro.
+Exemplo: removegg(111, [[333, Cpf, Idade], [111, Cpf, Idade]]) -> [111, Cpf, Idade]
+*/
+removegg(_, [], []).
+removegg(Cpf, [H|T], C):- (member(Cpf, H) -> C = H; removegg(Cpf, T, C)).
+
+remove(X, [X|T], T).
+remove(X, [H|T], [H|T1]):- remove(X,T,T1).
+
+/*Limpa algum arquivo csv passado como parâmetro.*/
+limpaCsv(Arquivo):-
+    atom_concat('./dados/', Arquivo, Path),
+    open(Path, write, Fluxo),
+    write(Fluxo, ''),
+    close(Fluxo).
+
+/*Reescreve clientes.csv retirando o cliente excluído.*/
+reescreveCliente([]).
+reescreveCliente([H|T]):-
+    nth0(0, H, Cpf),
+    nth0(1, H, Idade),
+    cadastraCliente(Cpf, Idade),
+    reescreveCliente(T).
