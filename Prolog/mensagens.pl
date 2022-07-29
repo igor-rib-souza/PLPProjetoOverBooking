@@ -75,8 +75,14 @@ opcaoInvalida:-
 usuarioInvalido:-
     writeln("\nErro: usuário não cadastrado no sistema.\n").
 
+senhaInvalida:-
+    writeln("\nErro: senha não cadastrada no sistema.\n").
+    
 usuarioNaoCadastrado:-
     writeln("\nErro: usuário não cadastrado!\n").
+
+descontoNaoCadastrado:-
+    writeln("\nErro: desconto não cadastrado!\n").
 
 informeCpf:-
     writeln("Informe o CPF: ").
@@ -136,3 +142,8 @@ menuFuncionario:-
 
 usuarioAssentoOcupado:-
     writeln("\nErro: usuário já está ocupando um assento.").
+
+loginEmpresa:-
+    writeln("\nInforme seu login para acessar o menu da Empresa: ").
+loginEmpresa02:-
+    writeln("\nInforme sua senha para acessar o menu da Empresa: ").

@@ -11,6 +11,6 @@ main :-
 
 escolheOpcao(1):- writeln("Entrou na area do cliente"),(main).
 escolheOpcao(2):- writeln("Entrou na area do funcionario"),(main).
-escolheOpcao(3):- menuEmpresa(main).
+escolheOpcao(3):- verificaLoginEmpresa(main).
 escolheOpcao(4):- halt.
 escolheOpcao(_):- opcaoInvalida, main.

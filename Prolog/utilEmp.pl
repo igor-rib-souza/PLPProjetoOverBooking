@@ -33,22 +33,30 @@ cadastrarDesconto(Tipo, Valor):-
     writeln(Fluxo, (Tipo, Valor)),
     close(Fluxo).
 
+
 /*  Gera a lista que queremos excluir da lista de lista passada como parâmetro. */
-/*  Exemplo: removegg(111, [[333, Nome, Placa], [111, Nome, Placa]]) -> [111, Nome, Placa]*/
+/*  Exemplo: removegg(111, [[333, Nome], [111, Nome]]) -> [111, Nome]*/
 removegg(_, [], []).
 removegg(Cpf, [H|T], C):- (member(Cpf, H) -> C = H; removegg(Cpf, T, C)).
 
 remove(X, [X|T], T).
 remove(X, [H|T], [H|T1]):- remove(X,T,T1).
 
-/*  Reescreve clientes.csv sem o cliente excluído. */
-reescreveCliente([]).
-reescreveCliente([H|T]):-
+/*  Reescreve funcionarios.csv sem o funcionario excluído.*/
+reescreveFuncionario([]).
+reescreveFuncionario([H|T]):-
     nth0(0, H, Cpf), % Indice 0
     nth0(1, H, Nome), % Indice 1
-    nth0(2, H, Placa), % Indice 2
-    cadastrarCliente(Cpf, Nome, Placa),
-    reescreveCliente(T).
+    cadastrarFuncionario(Cpf, Nome),
+    reescreveFuncionario(T).
+
+/*  Reescreve descontos.csv sem o desconto excluído.*/
+reescreveDesconto([]).
+reescreveDesconto([H|T]):-
+    nth0(0, H, Tipo), % Indice 0
+    nth0(1, H, Valor), % Indice 1
+    cadastrarDesconto(Tipo, Valor),
+    reescreveDesconto(T).
 
 /*  Limpa algum arquivo csv passado como parâmetro.*/
 limpaCsv(Arquivo):-
