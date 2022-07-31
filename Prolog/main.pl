@@ -9,7 +9,7 @@ main :-
     escolheOpcao(Opcao),
     halt.
 
-escolheOpcao(1):- loginCliente(main).
+escolheOpcao(1):- acessoCliente(main).
 escolheOpcao(2):- writeln("Entrou na area do funcionario"),(main).
 escolheOpcao(3):- writeln("Entrou na area da empresa"),(main).
 escolheOpcao(4):- halt.

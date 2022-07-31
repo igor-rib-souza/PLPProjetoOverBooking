@@ -2,11 +2,19 @@
 :- include('mensagens.pl').
 :- include('Utilcliente.pl').
 
+escolhaDeOpcaoI(1,Menu):- verificaCliente(Menu).
+escolhaDeOpcaoI(2,Menu):- cadastrarCliente(Menu), loginCliente(Menu).
 
 escolhaDeOpcao(0,Menu):- cadastrarCliente(Menu), loginCliente(Menu).
 escolhaDeOpcao(1,Menu):- alteraCliente(Menu), loginCliente(Menu).
 escolhaDeOpcao(2,Menu):- excluirCliente(Menu), loginCliente(Menu).
 escolhaDeOpcao(8,Menu):- Menu.
+
+acessoCliente(Menu):-
+    loginouCadastroCliente,
+    read(Opcao),
+    escolhaDeOpcaoI(Opcao, Menu),
+    halt.
 
 loginCliente(Menu):-
     menuCliente,
