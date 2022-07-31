@@ -4,6 +4,7 @@
 
 
 escolhaDeOpcao(0,Menu):- cadastrarCliente(Menu), loginCliente(Menu).
+escolhaDeOpcao(1,Menu):- alteraCliente(Menu), loginCliente(Menu).
 escolhaDeOpcao(2,Menu):- excluirCliente(Menu), loginCliente(Menu).
 escolhaDeOpcao(8,Menu):- Menu.
 
@@ -50,4 +51,28 @@ excluirCliente(Menu):-
 
     reescreveCliente(FuncionariosExc),
     writeln("\nCliente excluido com sucesso!").
+
+alteraCliente(Menu):-
+    writeln("Informe o seu CPF, para a aleração de seus dados"),
+    read(Cpf),
+
+    writeln("Informe sua nova Idade"),
+    read(Idade),
+
+    lerArquivoCsv('clientes.csv', Result),
+    contemMember(Cpf, Result, Resposta),
+    (Resposta -> writeln("") ; usuarioInvalido, loginDono(Menu)),
+
+    removegg(Cpf, Result, X),
+    remove(X, Result, FuncionariosExc),
+
+    limpaCsv('clientes.csv'),
+
+    reescreveCliente(FuncionariosExc),
+
+    cadastraCliente(Cpf, Idade),
+
+    clienteAlterado.
+
+    
 
