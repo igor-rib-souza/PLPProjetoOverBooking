@@ -8,6 +8,8 @@ escolhaDeOpcaoI(2,Menu):- cadastrarCliente(Menu), loginCliente(Menu).
 escolhaDeOpcao(0,Menu):- cadastrarCliente(Menu), loginCliente(Menu).
 escolhaDeOpcao(1,Menu):- alteraCliente(Menu), loginCliente(Menu).
 escolhaDeOpcao(2,Menu):- excluirCliente(Menu), loginCliente(Menu).
+escolhaDeOpcao(3,Menu):- listaTodosAssentosDisponiveis(Menu), loginCliente(Menu).
+escolhaDeOpcao(4,Menu):- recomendaAssento(Menu), loginCliente(Menu).
 escolhaDeOpcao(8,Menu):- Menu.
 
 acessoCliente(Menu):-
@@ -81,6 +83,34 @@ alteraCliente(Menu):-
     cadastraCliente(Cpf, Idade),
 
     clienteAlterado.
+
+listaTodosAssentosDisponiveis(Menu):-
+    writeln("\n       -----TODOS OS ASSENTOS DISPONIVEIS NO SISTEMA!-----\n"),
+    lerArquivoCsv('assentos.csv',Result),
+    writeln(Result).
+
+recomendaAssento(Menu):-
+    lerArquivoCsv('assentos.csv',Result),
+    writeln("Lhe recomendamos esse assento:")
+    member(H,Result),
+    /*(H =@= "" -> writeln(""); "Infelizmente nao temos assentos para lhe recomendar", loginCliente(Menu)),*/
+    writeln(H).
+
+/*
+3A
+3B
+3C
+4A
+4B
+4C
+1A
+1B
+1C
+2A
+2B
+2C
+*/
+
 
     
 
