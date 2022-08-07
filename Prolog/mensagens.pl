@@ -134,3 +134,8 @@ menuFuncionario:-
 
 usuarioAssentoOcupado:-
     writeln("\nErro: usuário já está ocupando um assento.").
+
+loginFunc:-
+    writeln("\nInforme seu login para acessar o menu da Empresa: ").
+loginFunc2:-
+    writeln("\nInforme sua senha para acessar o menu da Empresa: ").
