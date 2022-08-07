@@ -23,10 +23,13 @@ menuFunc(Menu):-
 escolhaDeOpcao(0,Menu):- listaDescontos(), menuFunc(Menu).
 escolhaDeOpcao(1,Menu):- listaAssentos(), menuFunc(Menu).
 
-
 escolhaDeOpcao(4,Menu):- listaClientes(), menuFunc(Menu).
 escolhaDeOpcao(5,Menu):- excluirCliente(), menuFunc(Menu).
+escolhaDeOpcao(6,Menu):- cadastrarCliente(), menuFunc(Menu).
+escolhaDeOpcao(7,Menu):- alteraCliente(), menuFunc(Menu).
 
+
+escolhaDeOpcao(12,Menu):- main.
 /
 escolhaDeOpcao(6,Menu):- listaValoresDeCadaTipo(), menuEmpresa(Menu).
 escolhaDeOpcao(7,Menu):- cadastraDesconto(Menu), menuEmpresa(Menu).
@@ -65,3 +68,39 @@ excluirCliente():-
 
     reescreveCliente(FuncionariosExc),
     writeln("\nCliente excluido com sucesso!").
+
+cadastrarCliente():-
+      getCpf,
+      read(Cpf),
+      
+      informeIdade,
+      read(Idade),
+
+      lerArquivoCsv('clientes.csv',Resultado),
+      contemMember(Cpf, Resultado, Resultado2),
+      (Resultado2 -> usuarioCadastrado; write("")),
+
+      cadastraCliente(Cpf, Idade),
+      cadastroEfetuado.
+
+alteraCliente():-
+    writeln("Informe o seu CPF, para a aleração de seus dados"),
+    read(Cpf),
+
+    writeln("Informe sua nova Idade"),
+    read(Idade),
+
+    lerArquivoCsv('clientes.csv', Result),
+    contemMember(Cpf, Result, Resposta),
+    (Resposta -> writeln("") ; usuarioInvalido, loginDono(Menu)),
+
+    removegg(Cpf, Result, X),
+    remove(X, Result, FuncionariosExc),
+
+    limpaCsv('clientes.csv'),
+
+    reescreveCliente(FuncionariosExc),
+
+    cadastraCliente(Cpf, Idade),
+
+    clienteAlterado.

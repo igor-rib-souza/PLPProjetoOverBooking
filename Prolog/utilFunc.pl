@@ -50,3 +50,8 @@ reescreveCliente([H|T]):-
     nth0(1, H, Idade),
     cadastraCliente(Cpf, Idade),
     reescreveCliente(T).
+
+cadastraCliente(Cpf, Idade):-
+    open('./dados/clientes.csv', append, Fluxo),
+    writeln(Fluxo, (Cpf, Idade)),
+    close(Fluxo).
