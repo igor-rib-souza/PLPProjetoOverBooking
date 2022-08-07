@@ -139,3 +139,6 @@ loginFunc:-
     writeln("\nInforme seu login para acessar o menu da Empresa: ").
 loginFunc2:-
     writeln("\nInforme sua senha para acessar o menu da Empresa: ").
+
+usuarioInvalido:-
+    writeln("\nErro: usuário não cadastrado no sistema.\n").

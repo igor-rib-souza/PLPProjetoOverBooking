@@ -23,8 +23,10 @@ menuFunc(Menu):-
 escolhaDeOpcao(0,Menu):- listaDescontos(), menuFunc(Menu).
 escolhaDeOpcao(1,Menu):- listaAssentos(), menuFunc(Menu).
 
+
+escolhaDeOpcao(4,Menu):- listaClientes(), menuFunc(Menu).
+escolhaDeOpcao(5,Menu):- excluirCliente(), menuFunc(Menu).
 /
-escolhaDeOpcao(4,Menu):- listaTodosFuncionarios(), menuEmpresa(Menu).
 escolhaDeOpcao(6,Menu):- listaValoresDeCadaTipo(), menuEmpresa(Menu).
 escolhaDeOpcao(7,Menu):- cadastraDesconto(Menu), menuEmpresa(Menu).
 escolhaDeOpcao(9,Menu):- excluirDescontos(Menu), menuEmpresa(Menu).
@@ -42,3 +44,23 @@ writeln(Resultado),
 writeln("\n-----TODOS ASSENTOS EXECUTIVOS DISPONIVEIS----\n"),
 lerArquivoCsv('assentos_executivo_disponivel.csv',Exec),
 writeln(Exec).
+
+listaClientes():- writeln("\n       -----TODOS OS CLIENTES CADASTRADOS NO SISTEMA!-----\n"),
+      lerArquivoCsv('clientes.csv',Clientes),
+      writeln(Clientes).
+
+excluirCliente():-
+    writeln("Informe o seu CPF"),
+    read(Cpf),
+
+    lerArquivoCsv('clientes.csv', Result),
+    contemMember(Cpf, Result, Resposta),
+    (Resposta -> writeln("") ; usuarioInvalido),
+
+    removegg(Cpf, Result, X),
+    remove(X, Result, FuncionariosExc),
+
+    limpaCsv('clientes.csv'),
+
+    reescreveCliente(FuncionariosExc),
+    writeln("\nCliente excluido com sucesso!").
