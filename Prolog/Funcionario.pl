@@ -26,6 +26,7 @@ escolhaDeOpcao(1,Menu):- listaAssentos(), menuFunc(Menu).
 
 escolhaDeOpcao(4,Menu):- listaClientes(), menuFunc(Menu).
 escolhaDeOpcao(5,Menu):- excluirCliente(), menuFunc(Menu).
+
 /
 escolhaDeOpcao(6,Menu):- listaValoresDeCadaTipo(), menuEmpresa(Menu).
 escolhaDeOpcao(7,Menu):- cadastraDesconto(Menu), menuEmpresa(Menu).
