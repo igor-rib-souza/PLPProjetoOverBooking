@@ -85,3 +85,20 @@ cadastra2(Assento):-
     open('./dados/assentos_executivo_disponivel.csv', append, Fluxo),
     writeln(Fluxo, (Assento)),
     close(Fluxo).
+
+
+reescreveCompra([]).
+reescreveCompra([H|T]):-
+   
+    nth0(0, H, Assento),
+    
+    
+    cadastraCompra(Assento),
+    
+    reescreveCompra(T).
+
+
+cadastraCompra(Assento):-
+    open('./dados/compra.csv', append, Fluxo),
+    writeln(Fluxo, (Assento)),
+    close(Fluxo).

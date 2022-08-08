@@ -31,8 +31,9 @@ escolhaDeOpcao(7,Menu):- alteraCliente(), menuFunc(Menu).
 escolhaDeOpcao(8,Menu):- recomendaAssento(), menuFunc(Menu).
 escolhaDeOpcao(9,Menu):- listaIndisponiveis, menuFunc(Menu).
 escolhaDeOpcao(10,Menu):- listaValores(), menuFunc(Menu).
-
+escolhaDeOpcao(11,Menu):- alteraAssento(), menuFunc(Menu).
 escolhaDeOpcao(12,Menu):- main.
+escolhaDeOpcao(_,Menu):- writeln('OPÇAO INVALIDA'), menuFunc(Menu).
 
 /escolhaDeOpcao(_, Menu):- writeln('ok')./
 
@@ -103,6 +104,34 @@ alteraCliente():-
     cadastraCliente(Cpf, Idade),
 
     clienteAlterado.
+
+alteraAssento() :-
+    listaAssentos,
+
+    writeln("Informe o seu CPF, para a aleração de seus dados"),
+    read(Cpf),
+
+    writeln('Você deseja comprar um assento: [1] Econômico [2] Executivo'),
+    read(Tipo),
+
+    writeln("Informe seu novo assento"),
+    read(Assento),
+
+    lerArquivoCsv('compra.csv', Result),
+    contemMember(Cpf, Result, Resposta),
+    (Resposta -> writeln("") ; usuarioInvalido, menuFunc(Menu)),
+
+    removegg(Cpf, Result, X),
+    remove(X, Result, FuncionariosExc),
+
+    limpaCsv('compra.csv'),
+
+    reescreveCompra(FuncionariosExc),
+
+    compra(Assento, Tipo, Cpf),
+
+    writeln('Alteração realizada com sucesso').
+
 
 recomendaAssento(Menu):-
     lerArquivoCsv('assentos.csv',Result),
