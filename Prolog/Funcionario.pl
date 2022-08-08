@@ -33,11 +33,11 @@ escolhaDeOpcao(9,Menu):- listaIndisponiveis, menuFunc(Menu).
 escolhaDeOpcao(10,Menu):- listaValores(), menuFunc(Menu).
 escolhaDeOpcao(11,Menu):- alteraAssento(), menuFunc(Menu).
 escolhaDeOpcao(12,Menu):- main.
-escolhaDeOpcao(_,Menu):- writeln('OPÇAO INVALIDA'), menuFunc(Menu).
+escolhaDeOpcao(13, Menu):- restaura(), menuFunc(Menu).
+/*escolhaDeOpcao(_,Menu):- writeln('OPCAO INVALIDA'), menuFunc(Menu).*/
 
-/escolhaDeOpcao(_, Menu):- writeln('ok')./
 
-listaDescontos():- writeln("\n       -----TODOS OS DESCONTOS DISPONIVEIS NO SISTEMA!-----\n"),
+listaDescontos():- writeln("\n-----TODOS OS DESCONTOS DISPONIVEIS NO SISTEMA!-----\n"),
       lerArquivoCsv('descontos.csv',Resultado),
       writeln(Resultado).
 
@@ -240,4 +240,15 @@ excluirAssento(Assento):-
 
     reescreve(FuncionariosExc).
 
+restaura():-
+    limpaCsv("compra.csv"),
+    limpaCsv("assentos_indisponiveis.csv"),
+    limpaCsv("assentos_executivo_disponivel.csv"),
+    limpaCsv("assentos_economico_disponiveis.csv"),
+
+    lerArquivoCsv('assentos_economico.csv', Eco),
     
+
+    reescreve1(Eco),
+    lerArquivoCsv('assentos_executivo.csv', Exe),
+    reescreve2(Exe).

@@ -56,7 +56,7 @@ cadastraCliente(Cpf, Idade):-
     writeln(Fluxo, (Cpf, Idade)),
     close(Fluxo).
 
-reescreve1([],Path).
+reescreve1([]).
 reescreve1([H|T]):-
    
     nth0(0, H, Assento),
@@ -71,7 +71,7 @@ cadastra1(Assento):-
     writeln(Fluxo, (Assento)),
     close(Fluxo).
 
-reescreve2([],Path).
+reescreve2([]).
 reescreve2([H|T]):-
    
     nth0(0, H, Assento),

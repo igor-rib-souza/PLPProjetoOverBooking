@@ -129,7 +129,7 @@ menuFuncionario:-
     writeln("[10] Exibir valores para cada tipo de assento"),
     writeln("[11] Alterar assento de um cliente"),
     writeln("[12] Voltar ao menu principal"),
-    writeln("[*] Restaure o sistema para o estado inicial\n").
+    writeln("[13] Restaure o sistema para o estado inicial\n").
 
 
 usuarioAssentoOcupado:-
