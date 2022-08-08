@@ -186,6 +186,10 @@ compra(Assento,2,Cpf):-
     writeln(Fluxo, (Cpf, Saida)),
     close(Fluxo),
 
+    open('./dados/assentos_indisponiveis.csv', append, Add),
+    writeln(Add, (Saida)),
+    close(Add),
+
     limpaCsv('assentos_executivo_disponivel.csv'),
 
     reescreve2(FuncionariosExc).
