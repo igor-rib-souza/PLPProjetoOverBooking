@@ -55,3 +55,33 @@ cadastraCliente(Cpf, Idade):-
     open('./dados/clientes.csv', append, Fluxo),
     writeln(Fluxo, (Cpf, Idade)),
     close(Fluxo).
+
+reescreve1([],Path).
+reescreve1([H|T]):-
+   
+    nth0(0, H, Assento),
+    
+    
+    cadastra1(Assento),
+    
+    reescreve1(T).
+
+cadastra1(Assento):-
+    open('./dados/assentos_economico_disponiveis.csv', append, Fluxo),
+    writeln(Fluxo, (Assento)),
+    close(Fluxo).
+
+reescreve2([],Path).
+reescreve2([H|T]):-
+   
+    nth0(0, H, Assento),
+    
+    
+    cadastra2(Assento),
+    
+    reescreve2(T).
+
+cadastra2(Assento):-
+    open('./dados/assentos_executivo_disponivel.csv', append, Fluxo),
+    writeln(Fluxo, (Assento)),
+    close(Fluxo).
