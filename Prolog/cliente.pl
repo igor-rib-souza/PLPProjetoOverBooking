@@ -87,16 +87,34 @@ alteraCliente(Menu):-
 
 listaTodosAssentosDisponiveis(Menu):-
     writeln("\n       -----TODOS OS ASSENTOS DISPONIVEIS NO SISTEMA!-----\n"),
-    lerArquivoCsv('assentos.csv',Result),
-    writeln(Result).
+    listaAssentos().
 
+/*Para recomendar Assento*/
 recomendaAssento(Menu):-
-    lerArquivoCsv('assentos_disponiveis.csv',Result),
-    writeln("Lhe recomendamos esse assento:")
+    writeln("Você deseja comprar um assento: [1] Econômico [2] Executivo"),
+    read(Tipo),
+    recomendaAssentoX(Tipo),
+    loginCliente(Menu).
+
+recomendaAssentoX(1):-
+    lerArquivoCsv('assentos_economico_disponiveis.csv',Result),
+    writeln("Lhe recomendamos esse assento:"),
+    writeln(Result),
     member(H,Result),
-    /*(H =@= "" -> writeln(""); "Infelizmente nao temos assentos para lhe recomendar", loginCliente(Menu)),*/
     writeln(H).
 
+recomendaAssentoX(2):-
+    lerArquivoCsv('assentos_executivo_disponiveis.csv',Result),
+    writeln("Lhe recomendamos esse assento:"),
+    writeln(Result),
+    member(H,Result),
+    writeln(H).
+
+recomendaAssentoX(_):-
+    writeln("opção invalida"),
+    recomendaAssento(Menu).
+
+/*Para realizar compra*/
 realizaCompra(Menu):-
     writeln("Digite o seu CPF para o procedimento da compra:"),
     read(Cpf),
@@ -106,6 +124,13 @@ realizaCompra(Menu):-
     writeln("Qual assento você deseja?"),
     read(Assento),
     compra(Assento,Tipo,Cpf).
+
+listaAssentos():- writeln("\n-----TODOS ASSENTOS ECONOMICOS DISPONIVEIS----\n"),
+    lerArquivoCsv('assentos_economico_disponiveis.csv',Resultado),
+    writeln(Resultado),
+    writeln("\n-----TODOS ASSENTOS EXECUTIVOS DISPONIVEIS----\n"),
+    lerArquivoCsv('assentos_executivo_disponiveis.csv',Exec),
+    writeln(Exec).
 
 geraAssento([H|T],Saida):- 
     Saida = H.
@@ -124,7 +149,7 @@ compra(Assento,1,Cpf):-
     reescreve1(FuncionariosExc).
 
 compra(Assento,2,Cpf):- 
-    lerArquivoCsv('assentos_executivo_disponivel.csv', Result),
+    lerArquivoCsv('assentos_executivo_disponiveis.csv', Result),
     contemMember(Assento, Result, Resposta),
     (Resposta -> writeln("") ; writeln('Assento invalido')),
     removegg(Assento, Result, X),
@@ -136,9 +161,5 @@ compra(Assento,2,Cpf):-
     open('./dados/assentos_indisponiveis.csv', append, Add),
     writeln(Add, (Saida)),
     close(Add),
-    limpaCsv('assentos_executivo_disponivel.csv'),
+    limpaCsv('assentos_executivo_disponiveis.csv'),
     reescreve2(FuncionariosExc).
-
-
-    
-
