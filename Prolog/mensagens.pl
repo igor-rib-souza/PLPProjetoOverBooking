@@ -1,3 +1,4 @@
+:-style_check(-discontiguous).
 menuPrincipal:-
     writeln("\nEscolha uma opcao para prosseguir"),
     writeln("\n[1] Area do cliente"),
