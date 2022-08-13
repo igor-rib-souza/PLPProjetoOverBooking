@@ -197,7 +197,11 @@ compra(Assento,1,Cpf):-
 
     limpaCsv('assentos_economico_disponiveis.csv'),
 
-    reescreve1(FuncionariosExc).
+    reescreve1(FuncionariosExc),
+    
+    open('./dados/assentos_indisponiveis.csv', append, Fluxo2),
+    writeln(Fluxo2, (Saida)),
+    close(Fluxo2).
 
 compra(Assento,2,Cpf):- 
 
