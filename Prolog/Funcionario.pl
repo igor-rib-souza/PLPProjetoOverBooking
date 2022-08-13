@@ -23,7 +23,7 @@ menuFunc(Menu):-
 escolhaDeOpcao(0,Menu):- listaDescontos(), menuFunc(Menu).
 escolhaDeOpcao(1,Menu):- listaAssentos(), menuFunc(Menu).
 escolhaDeOpcao(2,Menu):- verificaCliente(Menu), menuFunc(Menu).
-
+escolhaDeOpcao(3,Menu):- cancelaCompra(), menuFunc(Menu).
 escolhaDeOpcao(4,Menu):- listaClientes(), menuFunc(Menu).
 escolhaDeOpcao(5,Menu):- excluirCliente(), menuFunc(Menu).
 escolhaDeOpcao(6,Menu):- cadastrarCliente(), menuFunc(Menu).
@@ -34,7 +34,7 @@ escolhaDeOpcao(10,Menu):- listaValores(), menuFunc(Menu).
 escolhaDeOpcao(11,Menu):- alteraAssento(), menuFunc(Menu).
 escolhaDeOpcao(12,Menu):- main.
 escolhaDeOpcao(13, Menu):- restaura(), menuFunc(Menu).
-/*escolhaDeOpcao(_,Menu):- writeln('OPCAO INVALIDA'), menuFunc(Menu).*/
+escolhaDeOpcao(_,Menu):- writeln('OPCAO INVALIDA'), menuFunc(Menu).
 
 
 listaDescontos():- writeln("\n-----TODOS OS DESCONTOS DISPONIVEIS NO SISTEMA!-----\n"),
@@ -256,3 +256,21 @@ restaura():-
     reescreve1(Eco),
     lerArquivoCsv('assentos_executivo.csv', Exe),
     reescreve2(Exe).
+
+
+cancelaCompra():-
+    writeln("Informe o seu CPF"),
+    read(Cpf),
+
+    lerArquivoCsv('compra.csv', Result),
+    contemMember(Cpf, Result, Resposta),
+    (Resposta -> writeln("") ; writeln("Não existe compra cadastrada no seu nome"), menuFunc(Menu)),
+
+    removegg(Cpf, Result, X),
+    remove(X, Result, ComprasRest),
+
+    limpaCsv('compra.csv'),
+
+    reescreveCompra(ComprasRest),
+    
+    writeln("Compra mais antiga cancelada.").
