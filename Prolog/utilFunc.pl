@@ -90,10 +90,11 @@ cadastra2(Assento):-
 reescreveCompra([]).
 reescreveCompra([H|T]):-
    
-    nth0(0, H, Assento),
+    nth0(0, H, Cpf),
+    nth0(1, H, Assento),
     
     
-    cadastraCompra(Assento),
+    cadastraCompra(Cpf, Assento),
     
     reescreveCompra(T).
 
@@ -101,4 +102,9 @@ reescreveCompra([H|T]):-
 cadastraCompra(Assento):-
     open('./dados/compra.csv', append, Fluxo),
     writeln(Fluxo, (Assento)),
+    close(Fluxo).
+
+cadastraCompra(Cpf,Assento):-
+    open('./dados/compra.csv', append, Fluxo),
+    writeln(Fluxo, (Cpf,Assento)),
     close(Fluxo).
