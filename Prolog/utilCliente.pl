@@ -13,6 +13,9 @@ rows_to_lists(Rows, Lists):- maplist(row_to_list, Rows, Lists).
 row_to_list(Row, List):-
     Row =.. [row|List].
 
+contemMemberString(_,[],false).
+contemMemberString(Assento,[[H]|_],true):- nonvar(H).
+contemMemberString(Assento,[_|T],Saida):-contemMemberString(Assento,T,Saida).
 
 /* Verifica se a variável "Busca" existe numa lista, retornando true ou false. */
 contemMember(_, [], false).
@@ -31,6 +34,7 @@ Gera a lista que queremos excluir da lista de lista passada como parâmetro.
 Exemplo: removegg(111, [[333, Cpf, Idade], [111, Cpf, Idade]]) -> [111, Cpf, Idade]
 */
 removegg(_, [], []).
+
 removegg(Cpf, [H|T], C):- (member(Cpf, H) -> C = H; removegg(Cpf, T, C)).
 
 remove(X, [X|T], T).
@@ -76,11 +80,14 @@ cadastra2(Assento):-
 
 reescreveCompra([]).
 reescreveCompra([H|T]):-
-    nth0(0, H, Assento),
-    cadastraCompra(Assento),
+    nth0(0, H, Cpf),
+    nth0(1, H, Assento),
+    cadastraCompra(Cpf,Assento),
     reescreveCompra(T).
 
-cadastraCompra(Assento):-
+cadastraCompra(Cpf,Assento):-
     open('./dados/compra.csv', append, Fluxo),
-    writeln(Fluxo, (Assento)),
+    writeln(Fluxo, (Cpf,Assento)),
     close(Fluxo).
+
+ler_string(S) :- read_line_to_string(user_input, S).
