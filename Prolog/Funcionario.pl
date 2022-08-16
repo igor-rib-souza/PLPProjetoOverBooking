@@ -1,6 +1,7 @@
 :-use_module(library(csv)).
 :- include('mensagens.pl').
-:- include('utilFunc.pl').
+
+:-include('util.pl').
 
 verificaLoginFunc(Menu):-
     loginFunc,
@@ -28,7 +29,7 @@ escolhaDeOpcao(4,Menu):- listaClientes(), menuFunc(Menu).
 escolhaDeOpcao(5,Menu):- excluirCliente(), menuFunc(Menu).
 escolhaDeOpcao(6,Menu):- cadastrarCliente(), menuFunc(Menu).
 escolhaDeOpcao(7,Menu):- alteraCliente(), menuFunc(Menu).
-escolhaDeOpcao(8,Menu):- recomendaAssento(), menuFunc(Menu).
+escolhaDeOpcao(8,Menu):- recomendaAssento(Menu), menuFunc(Menu).
 escolhaDeOpcao(9,Menu):- listaIndisponiveis, menuFunc(Menu).
 escolhaDeOpcao(10,Menu):- listaValores(), menuFunc(Menu).
 escolhaDeOpcao(11,Menu):- alteraAssento(), menuFunc(Menu).
@@ -135,7 +136,7 @@ alteraAssento() :-
 
 recomendaAssento(Menu):-
     lerArquivoCsv('assentos.csv',Result),
-    writeln("Lhe recomendamos esse assento:")
+    writeln("Lhe recomendamos esse assento:"),
     member(H,Result),
     /*(H =@= "" -> writeln(""); "Infelizmente nao temos assentos para lhe recomendar", loginCliente(Menu)),*/
     writeln(H).

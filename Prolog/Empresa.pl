@@ -1,6 +1,6 @@
 :-use_module(library(csv)).
 :- include('mensagens.pl').
-:- include('utilEmp.pl').
+:- include('util.pl').
 
 verificaLoginEmpresa(Menu):-
         loginEmpresa,
@@ -16,17 +16,18 @@ verificaLoginEmpresa(Menu):-
 menuEmpresa(Menu):-
         menuEmpresaa,
         read(Opcao),
-        escolhaDeOpcao(Opcao,Menu),
+        escolhaDeOpcao2(Opcao,Menu),
         halt.
 
-escolhaDeOpcao(1,Menu):- cadastroDeFuncionario(Menu), menuEmpresa(Menu).
-escolhaDeOpcao(2,Menu):- alterarFuncionario(Menu), menuEmpresa(Menu).
-escolhaDeOpcao(3,Menu):- excluirFuncionario(Menu), menuEmpresa(Menu).
-escolhaDeOpcao(4,Menu):- listaTodosFuncionarios(), menuEmpresa(Menu).
-escolhaDeOpcao(6,Menu):- listaValoresDeCadaTipo(), menuEmpresa(Menu).
-escolhaDeOpcao(7,Menu):- cadastraDesconto(Menu), menuEmpresa(Menu).
-escolhaDeOpcao(8,Menu):- alterarDesconto(Menu), menuEmpresa(Menu).
-escolhaDeOpcao(9,Menu):- excluirDescontos(Menu), menuEmpresa(Menu).
+escolhaDeOpcao2(1,Menu):- cadastroDeFuncionario(Menu), menuEmpresa(Menu).
+escolhaDeOpcao2(2,Menu):- alterarFuncionario(Menu), menuEmpresa(Menu).
+escolhaDeOpcao2(3,Menu):- excluirFuncionario(Menu), menuEmpresa(Menu).
+escolhaDeOpcao2(4,Menu):- listaTodosFuncionarios(), menuEmpresa(Menu).
+escolhaDeOpcao2(6,Menu):- listaValoresDeCadaTipo(), menuEmpresa(Menu).
+escolhaDeOpcao2(7,Menu):- cadastraDesconto(Menu), menuEmpresa(Menu).
+escolhaDeOpcao2(8,Menu):- alterarDesconto(Menu), menuEmpresa(Menu).
+escolhaDeOpcao2(9,Menu):- excluirDescontos(Menu), menuEmpresa(Menu).
+escolhaDeOpcao2(10,Menu):- main.
 
 
 cadastroDeFuncionario(Menu):-
