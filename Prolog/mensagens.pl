@@ -1,3 +1,4 @@
+:-style_check(-discontiguous).
 menuPrincipal:-
     writeln("\nEscolha uma opcao para prosseguir"),
     writeln("\n[1] Area do cliente"),
@@ -140,13 +141,23 @@ menuFuncionario:-
     writeln("[10] Exibir valores para cada tipo de assento"),
     writeln("[11] Alterar assento de um cliente"),
     writeln("[12] Voltar ao menu principal"),
-    writeln("[*] Restaure o sistema para o estado inicial\n").
+    writeln("[13] Restaure o sistema para o estado inicial\n").
 
 
 usuarioAssentoOcupado:-
     writeln("\nErro: usuário já está ocupando um assento.").
 
+
+loginFunc:-
+    writeln("\nInforme seu login para acessar o menu da Empresa: ").
+loginFunc2:-
+    writeln("\nInforme sua senha para acessar o menu da Empresa: ").
+
+usuarioInvalido:-
+    writeln("\nErro: usuário não cadastrado no sistema.\n").
+
 loginEmpresa:-
     writeln("\nInforme seu login para acessar o menu da Empresa: ").
 loginEmpresa02:-
     writeln("\nInforme sua senha para acessar o menu da Empresa: ").
+
