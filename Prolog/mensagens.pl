@@ -28,6 +28,9 @@ menuEmpresaa:-
 cadastroEfetuado:-
     writeln("\nCADASTRADO EFETUADO COM SUCESSO!").
 
+cadastroAlterado:-
+    writeln("\nCADASTRADO ALTERADO COM SUCESSO!").
+
 cadastrarNome:-
     writeln("\n       -----CADASTRO DE USUÁRIO-----"),
     writeln("\nInforme o nome: ").

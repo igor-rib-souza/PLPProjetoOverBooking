@@ -20,10 +20,12 @@ menuEmpresa(Menu):-
         halt.
 
 escolhaDeOpcao(1,Menu):- cadastroDeFuncionario(Menu), menuEmpresa(Menu).
+escolhaDeOpcao(2,Menu):- alterarFuncionario(Menu), menuEmpresa(Menu).
 escolhaDeOpcao(3,Menu):- excluirFuncionario(Menu), menuEmpresa(Menu).
 escolhaDeOpcao(4,Menu):- listaTodosFuncionarios(), menuEmpresa(Menu).
 escolhaDeOpcao(6,Menu):- listaValoresDeCadaTipo(), menuEmpresa(Menu).
 escolhaDeOpcao(7,Menu):- cadastraDesconto(Menu), menuEmpresa(Menu).
+escolhaDeOpcao(8,Menu):- alterarDesconto(Menu), menuEmpresa(Menu).
 escolhaDeOpcao(9,Menu):- excluirDescontos(Menu), menuEmpresa(Menu).
 
 
@@ -71,6 +73,30 @@ excluirFuncionario(Menu):-
       reescreveFuncionario(FuncionariosExcluidos),
       funcionarioExcluido.
 
+alterarFuncionario(Menu):-
+      writeln("Informe o nome do funcionario que deseja alterar: "),
+      read(Cpf),
+      lerArquivoCsv('funcionarios.csv',Resultado),
+      contemMember(Cpf, Resultado, Resultado2),
+      (Resultado2 -> writeln(""); usuarioNaoCadastrado, menuEmpresa(Menu)),
+
+      removegg(Cpf,Resultado,Respost),
+      remove(Respost,Resultado,FuncionariosExcluidos),
+
+      limpaCsv('funcionarios.csv'),
+      reescreveFuncionario(FuncionariosExcluidos),
+
+      writeln("Infome o novo nome do usuário:"),
+      read(NovoNome),
+      writeln("Infome o novo cpf do usuário:"),
+      read(NovoCpf),
+      lerArquivoCsv('funcionarios.csv',Resultado3),
+      contemMember(NovoCpf, Resultado3, Resultado4),
+      (Resultado4 -> usuarioCadastrado, menuEmpresa(Menu) ; write("")),
+      cadastrarFuncionario(NovoNome, NovoCpf),
+      cadastroAlterado.
+      
+
 /* Exclui, mas reescreve errado */
 excluirDescontos(Menu):-
       writeln("Informe o TIPO da poltrona relacionado ao desconto que deseja excluir: "),
@@ -86,6 +112,28 @@ excluirDescontos(Menu):-
       limpaCsv('descontos.csv'),
       reescreveDesconto(DescontosExcluidos),
       descontoExcluido.
+
+alterarDesconto(Menu):-
+      writeln("Informe o TIPO da poltrona relacionado ao desconto que deseja alterar: "),
+      read(Tipo),
+      lerArquivoCsv('descontos.csv',Resultado),
+      
+
+      removegg(Tipo,Resultado,Respost),
+      remove(Respost,Resultado,DescontosExcluidos),
+
+      limpaCsv('descontos.csv'),
+      reescreveDesconto(DescontosExcluidos),
+
+      writeln("Infome o novo tipo do desconto:"),
+      read(NovoTipo),
+      writeln("Infome o novo valor do desconto:"),
+      read(NovoValor),
+      lerArquivoCsv('descontos.csv',Resultado3),
+      contemMember(NovoTipo, Resultado3, Resultado4),
+      (Resultado4 -> descontoCadastrado, menuEmpresa(Menu) ; write("")),
+      cadastrarDesconto(NovoTipo, NovoValor),
+      cadastroAlterado.
 
 listaTodosFuncionarios:-
       writeln("\n       -----TODOS OS FUNCINÁRIOS ATIVOS NO SISTEMA!-----\n"),
