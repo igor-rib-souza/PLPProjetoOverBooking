@@ -12,7 +12,7 @@ opcaoInvalida:-
 mensagemSaida:-
     writeln("\nAté mais!\n").
 
-menuEmpresa:-
+menuEmpresaa:-
     writeln("\n       -----Menu da Empresa-----"),
     writeln("\nComo deseja prosseguir?"),
     writeln("[1] Cadastrar funcionário"),
@@ -29,6 +29,9 @@ menuEmpresa:-
 cadastroEfetuado:-
     writeln("\nCADASTRADO EFETUADO COM SUCESSO!").
 
+cadastroAlterado:-
+    writeln("\nCADASTRADO ALTERADO COM SUCESSO!").
+
 cadastrarNome:-
     writeln("\n       -----CADASTRO DE USUÁRIO-----"),
     writeln("\nInforme o nome: ").
@@ -44,7 +47,9 @@ cadastrarDesconto:-
     writeln("\n       -----CADASTRO DE DESCONTO-----"),
     writeln("Insira tipo da poltrona: ").
 
-    
+descontoJaCadastrado:-
+    writeln("\nJÁ POSSUI UM DESCONTO COM ESSE TIPO NO SISTEMA!").
+
 funcionarioExcluido:-
     writeln("\nFUNCIONÁRIO EXCLUIDO COM SUCESSO!").
 
@@ -74,8 +79,14 @@ opcaoInvalida:-
 usuarioInvalido:-
     writeln("\nErro: usuário não cadastrado no sistema.\n").
 
+senhaInvalida:-
+    writeln("\nErro: senha não cadastrada no sistema.\n").
+    
 usuarioNaoCadastrado:-
     writeln("\nErro: usuário não cadastrado!\n").
+
+descontoNaoCadastrado:-
+    writeln("\nErro: desconto não cadastrado!\n").
 
 informeCpf:-
     writeln("Informe o CPF: ").
@@ -136,6 +147,7 @@ menuFuncionario:-
 usuarioAssentoOcupado:-
     writeln("\nErro: usuário já está ocupando um assento.").
 
+
 loginFunc:-
     writeln("\nInforme seu login para acessar o menu da Empresa: ").
 loginFunc2:-
@@ -143,3 +155,9 @@ loginFunc2:-
 
 usuarioInvalido:-
     writeln("\nErro: usuário não cadastrado no sistema.\n").
+
+loginEmpresa:-
+    writeln("\nInforme seu login para acessar o menu da Empresa: ").
+loginEmpresa02:-
+    writeln("\nInforme sua senha para acessar o menu da Empresa: ").
+
