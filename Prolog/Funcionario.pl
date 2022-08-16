@@ -17,25 +17,25 @@ verificaLoginFunc(Menu):-
 menuFunc(Menu):-
         menuFuncionario,
         read(Opcao),
-        escolhaDeOpcao(Opcao,Menu),
+        escolhaDeOpcao1(Opcao,Menu),
         halt.
 
 
-escolhaDeOpcao(0,Menu):- listaDescontos(), menuFunc(Menu).
-escolhaDeOpcao(1,Menu):- listaAssentos(), menuFunc(Menu).
-escolhaDeOpcao(2,Menu):- verificaCliente(Menu), menuFunc(Menu).
-escolhaDeOpcao(3,Menu):- cancelaCompra(), menuFunc(Menu).
-escolhaDeOpcao(4,Menu):- listaClientes(), menuFunc(Menu).
-escolhaDeOpcao(5,Menu):- excluirCliente(), menuFunc(Menu).
-escolhaDeOpcao(6,Menu):- cadastrarCliente(), menuFunc(Menu).
-escolhaDeOpcao(7,Menu):- alteraCliente(), menuFunc(Menu).
-escolhaDeOpcao(8,Menu):- recomendaAssento(Menu), menuFunc(Menu).
-escolhaDeOpcao(9,Menu):- listaIndisponiveis, menuFunc(Menu).
-escolhaDeOpcao(10,Menu):- listaValores(), menuFunc(Menu).
-escolhaDeOpcao(11,Menu):- alteraAssento(), menuFunc(Menu).
-escolhaDeOpcao(12,Menu):- main.
-escolhaDeOpcao(13, Menu):- restaura(), menuFunc(Menu).
-escolhaDeOpcao(_,Menu):- writeln('OPCAO INVALIDA'), menuFunc(Menu).
+escolhaDeOpcao1(0,Menu):- listaDescontos(), menuFunc(Menu).
+escolhaDeOpcao1(1,Menu):- listaAssentos(), menuFunc(Menu).
+escolhaDeOpcao1(2,Menu):- verificaCliente(Menu), menuFunc(Menu).
+escolhaDeOpcao1(3,Menu):- cancelaCompra(), menuFunc(Menu).
+escolhaDeOpcao1(4,Menu):- listaClientes(), menuFunc(Menu).
+escolhaDeOpcao1(5,Menu):- excluirCliente(), menuFunc(Menu).
+escolhaDeOpcao1(6,Menu):- cadastrarCliente(), menuFunc(Menu).
+escolhaDeOpcao1(7,Menu):- alteraCliente(), menuFunc(Menu).
+escolhaDeOpcao1(8,Menu):- recomendaAssento(Menu), menuFunc(Menu).
+escolhaDeOpcao1(9,Menu):- listaIndisponiveis, menuFunc(Menu).
+escolhaDeOpcao1(10,Menu):- listaValores(), menuFunc(Menu).
+escolhaDeOpcao1(11,Menu):- alteraAssento(), menuFunc(Menu).
+escolhaDeOpcao1(12,Menu):- main.
+escolhaDeOpcao1(13, Menu):- restaura(), menuFunc(Menu).
+escolhaDeOpcao1(_,Menu):- writeln('OPCAO INVALIDA'), menuFunc(Menu).
 
 
 listaDescontos():- writeln("\n-----TODOS OS DESCONTOS DISPONIVEIS NO SISTEMA!-----\n"),

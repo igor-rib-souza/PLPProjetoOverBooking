@@ -122,7 +122,7 @@ cadastrarDesconto(Tipo, Valor):-
     writeln(Fluxo, (Tipo, Valor)),
     close(Fluxo).
 
-    /*  Reescreve funcionarios.csv sem o funcionario excluído.*/
+/*  Reescreve funcionarios.csv sem o funcionario excluído.*/
 reescreveFuncionario([]).
 reescreveFuncionario([H|T]):-
     nth0(0, H, Cpf), % Indice 0

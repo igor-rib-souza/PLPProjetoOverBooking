@@ -1,19 +1,19 @@
 :- use_module(library(csv)).
 :- include('mensagens.pl').
-:- include('Utilcliente.pl').
+:- include('util.pl').
 
 escolhaDeOpcaoI(1,Menu):- verificaCliente(Menu).
 escolhaDeOpcaoI(2,Menu):- cadastrarCliente(Menu), loginCliente(Menu).
 
-escolhaDeOpcao(0,Menu):- cadastrarCliente(Menu), loginCliente(Menu).
-escolhaDeOpcao(1,Menu):- alteraCliente(Menu), loginCliente(Menu).
-escolhaDeOpcao(2,Menu):- excluirCliente(Menu), loginCliente(Menu).
-escolhaDeOpcao(3,Menu):- listaTodosAssentosDisponiveis(Menu), loginCliente(Menu).
-escolhaDeOpcao(4,Menu):- recomendaAssento(Menu), loginCliente(Menu).
-escolhaDeOpcao(5,Menu):- realizaCompra(Menu), loginCliente(Menu).
-escolhaDeOpcao(6,Menu):- cancelaCompra(Menu), loginCliente(Menu).
-escolhaDeOpcao(7,Menu):- alteraAssento(Menu), loginCliente(Menu).
-escolhaDeOpcao(8,Menu):- Menu.
+escolhaDeOpcao3(0,Menu):- cadastrarCliente(Menu), loginCliente(Menu).
+escolhaDeOpcao3(1,Menu):- alteraCliente(Menu), loginCliente(Menu).
+escolhaDeOpcao3(2,Menu):- excluirCliente(Menu), loginCliente(Menu).
+escolhaDeOpcao3(3,Menu):- listaTodosAssentosDisponiveis(Menu), loginCliente(Menu).
+escolhaDeOpcao3(4,Menu):- recomendaAssento(Menu), loginCliente(Menu).
+escolhaDeOpcao3(5,Menu):- realizaCompra(Menu), loginCliente(Menu).
+escolhaDeOpcao3(6,Menu):- cancelaCompra(Menu), loginCliente(Menu).
+escolhaDeOpcao3(7,Menu):- alteraAssento(Menu), loginCliente(Menu).
+escolhaDeOpcao3(8,Menu):- Menu.
 
 acessoCliente(Menu):-
     loginouCadastroCliente,
@@ -24,7 +24,7 @@ acessoCliente(Menu):-
 loginCliente(Menu):-
     menuCliente,
     read(Opcao),
-    escolhaDeOpcao(Opcao, Menu),
+    escolhaDeOpcao3(Opcao, Menu),
     halt.
 
 verificaCliente(Menu):-

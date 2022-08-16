@@ -151,9 +151,9 @@ usuarioAssentoOcupado:-
 
 
 loginFunc:-
-    writeln("\nInforme seu login para acessar o menu da Empresa: ").
+    writeln("\nInforme seu login para acessar o menu da Funcionario: ").
 loginFunc2:-
-    writeln("\nInforme sua senha para acessar o menu da Empresa: ").
+    writeln("\nInforme sua senha para acessar o menu da Funcionario: ").
 
 usuarioInvalido:-
     writeln("\nErro: usuário não cadastrado no sistema.\n").

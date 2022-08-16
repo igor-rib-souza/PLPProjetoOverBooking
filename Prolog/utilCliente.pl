@@ -89,5 +89,3 @@ cadastraCompra(Cpf,Assento):-
     open('./dados/compra.csv', append, Fluxo),
     writeln(Fluxo, (Cpf,Assento)),
     close(Fluxo).
-
-ler_string(S) :- read_line_to_string(user_input, S).
