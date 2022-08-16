@@ -1,5 +1,6 @@
 :- (initialization main).
 :- include('mensagens.pl').
+:- include('cliente.pl').
 :- include('Funcionario.pl').
 :- include('Empresa.pl').
 
@@ -11,7 +12,7 @@ main :-
     escolheOpcao(Opcao),
     halt.
 
-escolheOpcao(1):- writeln("Entrou na area do cliente"),(main).
+escolheOpcao(1):- acessoCliente(main).
 escolheOpcao(2):- verificaLoginFunc(main).
 escolheOpcao(3):- verificaLoginEmpresa(main).
 escolheOpcao(4):- halt.
