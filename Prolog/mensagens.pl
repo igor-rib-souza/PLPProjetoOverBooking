@@ -101,14 +101,12 @@ menuCliente:-
     writeln("\n       -----Cliente-----"),
     writeln("\nOlá, Cliente!"),
     writeln("\nComo deseja prosseguir?"),
-    /*funcionalidade[0] apenas para teste, excluir depois*/
-    writeln("[0] Cadastrar cliente"), 
     writeln("[1] Alterar dados no meu cadastro"),
     writeln("[2] Deletar meu cadastro no sistema"),
     writeln("[3] Exibir lista de assentos disponíveis para compra"),
     writeln("[4] Recomendar assento"),
     writeln("[5] Realizar compra"),
-    writeln("[6] Cancela todas as compras"),
+    writeln("[6] Cancela primeira compra"),
     writeln("[7] altera Assento"),
     writeln("[8] Voltar ao menu principal\n").
     
@@ -133,7 +131,7 @@ menuFuncionario:-
     writeln("[0] Exibir descontos disponíveis"),
     writeln("[1] Exibir lista de assentos disponíveis"),
     writeln("[2] Escolher assento para um cliente"),
-    writeln("[3] Cancelar compras de um cliente"),
+    writeln("[3] Cancelar primeira compra de um cliente"),
     writeln("[4] Exibir clientes cadastrados"),
     writeln("[5] Excluir cliente do sistema"),
     writeln("[6] Cadastrar cliente no sistema"),

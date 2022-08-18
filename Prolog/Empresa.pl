@@ -23,6 +23,7 @@ escolhaDeOpcao2(1,Menu):- cadastroDeFuncionario(Menu), menuEmpresa(Menu).
 escolhaDeOpcao2(2,Menu):- alterarFuncionario(Menu), menuEmpresa(Menu).
 escolhaDeOpcao2(3,Menu):- excluirFuncionario(Menu), menuEmpresa(Menu).
 escolhaDeOpcao2(4,Menu):- listaTodosFuncionarios(), menuEmpresa(Menu).
+escolhaDeOpcao2(5,Menu):- listaTodosAssentosDisponiveis(), menuEmpresa(Menu).
 escolhaDeOpcao2(6,Menu):- listaValoresDeCadaTipo(), menuEmpresa(Menu).
 escolhaDeOpcao2(7,Menu):- cadastraDesconto(Menu), menuEmpresa(Menu).
 escolhaDeOpcao2(8,Menu):- alterarDesconto(Menu), menuEmpresa(Menu).
@@ -98,7 +99,6 @@ alterarFuncionario(Menu):-
       cadastroAlterado.
       
 
-/* Exclui, mas reescreve errado */
 excluirDescontos(Menu):-
       writeln("Informe o TIPO da poltrona relacionado ao desconto que deseja excluir: "),
       read(Tipo),
@@ -146,3 +146,13 @@ listaValoresDeCadaTipo:-
       lerArquivoCsv('valoresDeCadaTipo.csv',Resultado),
       writeln(Resultado).
 
+listaTodosAssentosDisponiveis(Menu):-
+    writeln("\n       -----TODOS OS ASSENTOS DISPONIVEIS NO SISTEMA!-----\n"),
+    listaAssentos().
+
+listaAssentos():- writeln("\n-----TODOS ASSENTOS ECONOMICOS DISPONIVEIS----\n"),
+      lerArquivoCsv('assentos_economico_disponiveis.csv',Resultado),
+      writeln(Resultado),
+      writeln("\n-----TODOS ASSENTOS EXECUTIVOS DISPONIVEIS----\n"),
+      lerArquivoCsv('assentos_executivo_disponiveis.csv',Exec),
+      writeln(Exec).
