@@ -23,7 +23,7 @@ escolhaDeOpcao2(1,Menu):- cadastroDeFuncionario(Menu), menuEmpresa(Menu).
 escolhaDeOpcao2(2,Menu):- alterarFuncionario(Menu), menuEmpresa(Menu).
 escolhaDeOpcao2(3,Menu):- excluirFuncionario(Menu), menuEmpresa(Menu).
 escolhaDeOpcao2(4,Menu):- listaTodosFuncionarios(), menuEmpresa(Menu).
-escolhaDeOpcao2(5,Menu):- listaTodosAssentosDisponiveis(), menuEmpresa(Menu).
+escolhaDeOpcao2(5,Menu):- listaTodosAssentosDisponiveis(Menu), menuEmpresa(Menu).
 escolhaDeOpcao2(6,Menu):- listaValoresDeCadaTipo(), menuEmpresa(Menu).
 escolhaDeOpcao2(7,Menu):- cadastraDesconto(Menu), menuEmpresa(Menu).
 escolhaDeOpcao2(8,Menu):- alterarDesconto(Menu), menuEmpresa(Menu).

@@ -47,7 +47,7 @@ lerArquivoCsv('assentos_economico_disponiveis.csv',Resultado),
 writeln(Resultado),
 
 writeln("\n-----TODOS ASSENTOS EXECUTIVOS DISPONIVEIS----\n"),
-lerArquivoCsv('assentos_executivo_disponivel.csv',Exec),
+lerArquivoCsv('assentos_executivo_disponiveis.csv',Exec),
 writeln(Exec).
 
 listaClientes():- writeln("\n       -----TODOS OS CLIENTES CADASTRADOS NO SISTEMA!-----\n"),
@@ -166,7 +166,7 @@ verificaAssento(Assento,1,Cpf):-
 
 
 verificaAssento(Assento,2,Cpf):-
-    lerArquivoCsv('assentos_executivo_disponivel.csv',Resultado),
+    lerArquivoCsv('assentos_executivo_disponiveis.csv',Resultado),
     contemMember(Assento, Resultado, Resposta),
     (Resposta -> compra(Assento,1,Cpf);writeln("Assento indisponivel")).   
 
@@ -206,7 +206,7 @@ compra(Assento,1,Cpf):-
 
 compra(Assento,2,Cpf):- 
 
-    lerArquivoCsv('assentos_executivo_disponivel.csv', Result),
+    lerArquivoCsv('assentos_executivo_disponiveis.csv', Result),
     contemMember(Assento, Result, Resposta),
     (Resposta -> writeln("") ; writeln('Assento invalido')),
 
@@ -224,7 +224,7 @@ compra(Assento,2,Cpf):-
     writeln(Add, (Saida)),
     close(Add),
 
-    limpaCsv('assentos_executivo_disponivel.csv'),
+    limpaCsv('assentos_executivo_disponiveis.csv'),
 
     reescreve2(FuncionariosExc).
 
@@ -248,7 +248,7 @@ excluirAssento(Assento):-
 restaura():-
     limpaCsv("compra.csv"),
     limpaCsv("assentos_indisponiveis.csv"),
-    limpaCsv("assentos_executivo_disponivel.csv"),
+    limpaCsv("assentos_executivo_disponiveis.csv"),
     limpaCsv("assentos_economico_disponiveis.csv"),
 
     lerArquivoCsv('assentos_economico.csv', Eco),
