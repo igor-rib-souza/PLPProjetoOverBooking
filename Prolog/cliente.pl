@@ -55,7 +55,7 @@ excluirCliente(Menu):-
 
     lerArquivoCsv('clientes.csv', Result),
     contemMember(Cpf, Result, Resposta),
-    (Resposta -> writeln("") ; usuarioInvalido, loginDono(Menu)),
+    (Resposta -> writeln("") ; usuarioInvalido, loginCliente(Menu)),
 
     removegg(Cpf, Result, X),
     remove(X, Result, FuncionariosExc),
@@ -74,7 +74,7 @@ alteraCliente(Menu):-
 
     lerArquivoCsv('clientes.csv', Result),
     contemMember(Cpf, Result, Resposta),
-    (Resposta -> writeln("") ; usuarioInvalido, loginDono(Menu)),
+    (Resposta -> writeln("") ; usuarioInvalido, loginCliente(Menu)),
 
     removegg(Cpf, Result, X),
     remove(X, Result, FuncionariosExc),
