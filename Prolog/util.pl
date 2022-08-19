@@ -76,13 +76,12 @@ reescreve2([H|T]):-
    
     nth0(0, H, Assento),
     
-    
     cadastra2(Assento),
     
     reescreve2(T).
 
 cadastra2(Assento):-
-    open('./dados/assentos_executivo_disponivel.csv', append, Fluxo),
+    open('./dados/assentos_executivo_disponiveis.csv', append, Fluxo),
     writeln(Fluxo, (Assento)),
     close(Fluxo).
 

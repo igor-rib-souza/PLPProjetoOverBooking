@@ -23,7 +23,7 @@ menuFunc(Menu):-
 
 escolhaDeOpcao1(0,Menu):- listaDescontos(), menuFunc(Menu).
 escolhaDeOpcao1(1,Menu):- listaAssentos(), menuFunc(Menu).
-escolhaDeOpcao1(2,Menu):- verificaCliente(Menu), menuFunc(Menu).
+escolhaDeOpcao1(2,Menu):- verificaClienteX(Menu), menuFunc(Menu).
 escolhaDeOpcao1(3,Menu):- cancelaCompra(), menuFunc(Menu).
 escolhaDeOpcao1(4,Menu):- listaClientes(), menuFunc(Menu).
 escolhaDeOpcao1(5,Menu):- excluirCliente(), menuFunc(Menu).
@@ -151,13 +151,13 @@ listaValores():-lerArquivoCsv('valoresDeCadaTipo.csv',Ind),
 
 
 
-verificaCliente(Menu):-
+verificaClienteX(Menu):-
     writeln("Insira o cpf do cliente"),
     read(Cpf),
 
     lerArquivoCsv('clientes.csv', Resultado),
     contemMember(Cpf, Resultado, Resposta),
-    (Resposta -> realizaCompra(Cpf); usuarioInvalido, menuFunc(Menu)).
+    (Resposta -> realizaCompraX(Cpf); usuarioInvalido, menuFunc(Menu)).
 
 verificaAssento(Assento,1,Cpf):-
     lerArquivoCsv('assentos_economico_disponiveis.csv',Resultado),
@@ -170,7 +170,7 @@ verificaAssento(Assento,2,Cpf):-
     contemMember(Assento, Resultado, Resposta),
     (Resposta -> compra(Assento,1,Cpf);writeln("Assento indisponivel")).   
 
-realizaCompra(Cpf):-
+realizaCompraX(Cpf):-
     listaAssentos,
     writeln("Você deseja comprar um assento: [1] Econômico [2] Executivo"),
     read(Tipo),
@@ -252,8 +252,6 @@ restaura():-
     limpaCsv("assentos_economico_disponiveis.csv"),
 
     lerArquivoCsv('assentos_economico.csv', Eco),
-    
-
     reescreve1(Eco),
     lerArquivoCsv('assentos_executivo.csv', Exe),
     reescreve2(Exe).
