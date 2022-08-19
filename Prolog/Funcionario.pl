@@ -29,7 +29,7 @@ escolhaDeOpcao1(4,Menu):- listaClientes(), menuFunc(Menu).
 escolhaDeOpcao1(5,Menu):- excluirCliente(), menuFunc(Menu).
 escolhaDeOpcao1(6,Menu):- cadastrarCliente(), menuFunc(Menu).
 escolhaDeOpcao1(7,Menu):- alteraCliente(), menuFunc(Menu).
-escolhaDeOpcao1(8,Menu):- recomendaAssento(Menu), menuFunc(Menu).
+escolhaDeOpcao1(8,Menu):- recomendaAssentoXY(Menu), menuFunc(Menu).
 escolhaDeOpcao1(9,Menu):- listaIndisponiveis, menuFunc(Menu).
 escolhaDeOpcao1(10,Menu):- listaValores(), menuFunc(Menu).
 escolhaDeOpcao1(11,Menu):- alteraAssento(), menuFunc(Menu).
@@ -93,7 +93,7 @@ alteraCliente():-
 
     lerArquivoCsv('clientes.csv', Result),
     contemMember(Cpf, Result, Resposta),
-    (Resposta -> writeln("") ; usuarioInvalido, loginDono(Menu)),
+    (Resposta -> writeln("") ; usuarioInvalido, menuFunc(Menu)),
 
     removegg(Cpf, Result, X),
     remove(X, Result, FuncionariosExc),
@@ -134,12 +134,28 @@ alteraAssento() :-
     writeln('Alteração realizada com sucesso').
 
 
-recomendaAssento(Menu):-
-    lerArquivoCsv('assentos.csv',Result),
+/*Para recomendar Assento*/
+recomendaAssentoXY(Menu):-
+    writeln("Você deseja comprar um assento: [1] Econômico [2] Executivo"),
+    read(Tipo),
+    recomendaAssentoY(Tipo),
+    menuFunc(Menu).
+
+recomendaAssentoY(1):-
+    lerArquivoCsv('assentos_economico_disponiveis.csv',Result),
     writeln("Lhe recomendamos esse assento:"),
     member(H,Result),
-    /*(H =@= "" -> writeln(""); "Infelizmente nao temos assentos para lhe recomendar", loginCliente(Menu)),*/
     writeln(H).
+
+recomendaAssentoY(2):-
+    lerArquivoCsv('assentos_executivo_disponiveis.csv',Result),
+    writeln("Lhe recomendamos esse assento:"),
+    member(H,Result),
+    writeln(H).
+
+recomendaAssentoY(_):-
+    writeln("opção invalida"),
+    recomendaAssentoXY(Menu).
 
 
 listaIndisponiveis():- writeln('ASSENTOS INDISPONIVEIS:'),
