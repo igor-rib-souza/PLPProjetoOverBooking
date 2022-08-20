@@ -15,11 +15,11 @@ mensagemSaida:-
 menuEmpresaa:-
     writeln("\n       -----Menu da Empresa-----"),
     writeln("\nComo deseja prosseguir?"),
-    writeln("[1] Cadastrar funcionário"),
-    writeln("[2] Alterar funcionário"),
-    writeln("[3] Excluir funcionário"),
-    writeln("[4] Visualizar funcionários ativos"),
-    writeln("[5] Listar assentos executivos e econômicos disponíveis"),
+    writeln("[1] Cadastrar funcionario"),
+    writeln("[2] Alterar funcionario"),
+    writeln("[3] Excluir funcionario"),
+    writeln("[4] Visualizar funcionarios ativos"),
+    writeln("[5] Listar assentos executivos e economicos disponiveis"),
     writeln("[6] Listar valores para cada tipo de assento"),
     writeln("[7] Criar descontos"),
     writeln("[8] Alterar descontos"),
@@ -48,23 +48,23 @@ cadastrarDesconto:-
     writeln("Insira tipo da poltrona: ").
 
 descontoJaCadastrado:-
-    writeln("\nJÁ POSSUI UM DESCONTO COM ESSE TIPO NO SISTEMA!").
+    writeln("\nJA POSSUI UM DESCONTO COM ESSE TIPO NO SISTEMA!").
 
 funcionarioExcluido:-
-    writeln("\nFUNCIONÁRIO EXCLUIDO COM SUCESSO!").
+    writeln("\nFUNCIONARIO EXCLUIDO COM SUCESSO!").
 
 assentoExcluido:-
-    writeln("\nAssento EXCLUIDO COM SUCESSO!").
+    writeln("\nASSENTO EXCLUIDO COM SUCESSO!").
 
 
 getValorDoDesconto:-
     writeln("Insira o valor do desconto: ").
 
 tipoJaCadastrado:-
-    writeln("\nErro: tipo já cadastrado!\n").
+    writeln("\nErro: tipo ja cadastrado!\n").
 
 assentoJaCadastrado:-
-    writeln("\nErro: tipo já cadastrado!\n").
+    writeln("\nErro: tipo ja cadastrado!\n").
 
 
 descontoExcluido:-
@@ -77,16 +77,16 @@ opcaoInvalida:-
     writeln("\nERRO: Escolha uma opcao valida\n\n").
 
 usuarioInvalido:-
-    writeln("\nErro: usuário não cadastrado no sistema.\n").
+    writeln("\nErro: usuario nao cadastrado no sistema.\n").
 
 senhaInvalida:-
-    writeln("\nErro: senha não cadastrada no sistema.\n").
+    writeln("\nErro: senha nao cadastrada no sistema.\n").
     
 usuarioNaoCadastrado:-
-    writeln("\nErro: usuário não cadastrado!\n").
+    writeln("\nErro: usuario nao cadastrado!\n").
 
 descontoNaoCadastrado:-
-    writeln("\nErro: desconto não cadastrado!\n").
+    writeln("\nErro: desconto nao cadastrado!\n").
 
 informeCpf:-
     writeln("Informe o CPF: ").
@@ -95,15 +95,15 @@ informeIdade:-
     writeln("Informe sua Idade: ").
 
 usuarioCadastrado:-
-    writeln("Erro: usuário já cadastrado!").
+    writeln("Erro: usuario ja cadastrado!").
 
 menuCliente:-
     writeln("\n       -----Cliente-----"),
-    writeln("\nOlá, Cliente!"),
+    writeln("\nOla, Cliente!"),
     writeln("\nComo deseja prosseguir?"),
     writeln("[1] Alterar dados no meu cadastro"),
     writeln("[2] Deletar meu cadastro no sistema"),
-    writeln("[3] Exibir lista de assentos disponíveis para compra"),
+    writeln("[3] Exibir lista de assentos disponiveis para compra"),
     writeln("[4] Recomendar assento"),
     writeln("[5] Realizar compra"),
     writeln("[6] Cancela primeira compra"),
@@ -114,10 +114,10 @@ clienteExcluido:-
     writeln("\nCLIENTE EXCLUIDO COM SUCESSO!").
 
 clienteAlterado:-
-    writeln("\nCLIENTE alterado COM SUCESSO!").
+    writeln("\nCLIENTE ALTERADO COM SUCESSO!").
 
 assentoInvalido:-
-    writeln("\nASSENTO INDISPONÍVEL\n").
+    writeln("\nASSENTO INDISPONIVEL\n").
 
 loginouCadastroCliente:-
     writeln("Bem vindo a area dos clientes! digite:"),
@@ -125,11 +125,11 @@ loginouCadastroCliente:-
     writeln("[2] Se voce deseja se cadastrar").
 
 menuFuncionario:-
-    writeln("-----FUNCIONÁRIO-----"),
-    writeln("\nOlá, funcionário!"),
+    writeln("-----FUNCIONARIO-----"),
+    writeln("\nOlá, funcionArio!"),
     writeln("\nComo deseja prosseguir?"),
-    writeln("[0] Exibir descontos disponíveis"),
-    writeln("[1] Exibir lista de assentos disponíveis"),
+    writeln("[0] Exibir descontos disponIveis"),
+    writeln("[1] Exibir lista de assentos disponIveis"),
     writeln("[2] Escolher assento para um cliente"),
     writeln("[3] Cancelar primeira compra de um cliente"),
     writeln("[4] Exibir clientes cadastrados"),
@@ -145,7 +145,7 @@ menuFuncionario:-
 
 
 usuarioAssentoOcupado:-
-    writeln("\nErro: usuário já está ocupando um assento.").
+    writeln("\nErro: usuario ja esta ocupando um assento.").
 
 
 loginFunc:-
@@ -154,7 +154,7 @@ loginFunc2:-
     writeln("\nInforme sua senha para acessar o menu da Funcionario: ").
 
 usuarioInvalido:-
-    writeln("\nErro: usuário não cadastrado no sistema.\n").
+    writeln("\nErro: usuario nao cadastrado no sistema.\n").
 
 loginEmpresa:-
     writeln("\nInforme seu login para acessar o menu da Empresa: ").

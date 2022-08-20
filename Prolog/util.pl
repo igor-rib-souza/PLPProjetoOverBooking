@@ -14,13 +14,13 @@ rows_to_lists(Rows, Lists):- maplist(row_to_list, Rows, Lists).
 row_to_list(Row, List):-
     Row =.. [row|List].
 
-/* Verifica se a variável "Busca" existe numa lista, retornando true ou false. */
+/* Verifica se a variavel "Busca" existe numa lista, retornando true ou false. */
 contemMember(_, [], false).
 contemMember(Busca, [H|T], R):-
     (member(Busca, H) -> R = true ; contemMember(Busca, T, R)
     ).
 
-/*  Escreve o funcionário no arquivo csv. */
+/*  Escreve o funcionario no arquivo csv. */
 cadastraCliente(Cpf, Idade):-
     open('./dados/clientes.csv', append, Fluxo),
     writeln(Fluxo, (Cpf, Idade)),

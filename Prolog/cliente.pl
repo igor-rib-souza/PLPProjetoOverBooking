@@ -93,7 +93,7 @@ listaTodosAssentosDisponiveis(Menu):-
 
 /*Para recomendar Assento*/
 recomendaAssento(Menu):-
-    writeln("Você deseja comprar um assento: [1] Econômico [2] Executivo"),
+    writeln("Voce deseja comprar um assento: [1] Economico [2] Executivo"),
     read(Tipo),
     recomendaAssentoX(Tipo),
     loginCliente(Menu).
@@ -111,7 +111,7 @@ recomendaAssentoX(2):-
     writeln(H).
 
 recomendaAssentoX(_):-
-    writeln("opção invalida"),
+    writeln("opcao invalida"),
     recomendaAssento(Menu).
 
 /*Para realizar compra*/
@@ -119,7 +119,7 @@ realizaCompra(Menu):-
     writeln("Digite o seu CPF para o procedimento da compra:"),
     read(Cpf),
     listaAssentos,
-    writeln("Você deseja comprar um assento: [1] Econômico [2] Executivo"),
+    writeln("Voce deseja comprar um assento: [1] Economico [2] Executivo"),
     read(Tipo),
     writeln("Informe seu numero de assento"),
     read(Assento),
@@ -171,7 +171,7 @@ cancelaCompra(Menu):-
 
     lerArquivoCsv('compra.csv', Result),
     contemMember(Cpf, Result, Resposta),
-    (Resposta -> writeln("") ; writeln("Não a compra cadastrada no seu nome"), loginCliente(Menu)),
+    (Resposta -> writeln("") ; writeln("Nao a compra cadastrada no seu nome"), loginCliente(Menu)),
 
     removegg(Cpf, Result, X),
     remove(X, Result, ComprasRest),
@@ -186,10 +186,10 @@ cancelaCompra(Menu):-
 alteraAssento(Menu) :-
     listaAssentos,
 
-    writeln("Informe o seu CPF, para a aleração de seus dados"),
+    writeln("Informe o seu CPF, para a aleracao de seus dados"),
     read(Cpf),
 
-    writeln('Você deseja comprar um assento: [1] Econômico [2] Executivo'),
+    writeln('Voce deseja comprar um assento: [1] Economico [2] Executivo'),
     read(Tipo),
 
     writeln("Informe seu novo assento"),
@@ -208,4 +208,4 @@ alteraAssento(Menu) :-
 
     compra(Assento, Tipo, Cpf),
 
-    writeln('Alteração realizada com sucesso').
+    writeln('Alteracao realizada com sucesso').

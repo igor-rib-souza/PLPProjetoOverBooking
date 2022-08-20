@@ -85,7 +85,7 @@ cadastrarCliente():-
       cadastroEfetuado.
 
 alteraCliente():-
-    writeln("Informe o seu CPF, para a aleração de seus dados"),
+    writeln("Informe o seu CPF, para a aleracao de seus dados"),
     read(Cpf),
 
     writeln("Informe sua nova Idade"),
@@ -109,10 +109,10 @@ alteraCliente():-
 alteraAssento() :-
     listaAssentos,
 
-    writeln("Informe o seu CPF, para a aleração de seus dados"),
+    writeln("Informe o seu CPF, para a alteracao de seus dados"),
     read(Cpf),
 
-    writeln('Você deseja comprar um assento: [1] Econômico [2] Executivo'),
+    writeln('Você deseja comprar um assento: [1] Economico [2] Executivo'),
     read(Tipo),
 
     writeln("Informe seu novo assento"),
@@ -131,12 +131,12 @@ alteraAssento() :-
 
     compra(Assento, Tipo, Cpf),
 
-    writeln('Alteração realizada com sucesso').
+    writeln('Alteracao realizada com sucesso').
 
 
 /*Para recomendar Assento*/
 recomendaAssentoXY(Menu):-
-    writeln("Você deseja comprar um assento: [1] Econômico [2] Executivo"),
+    writeln("Voce deseja comprar um assento: [1] Economico [2] Executivo"),
     read(Tipo),
     recomendaAssentoY(Tipo),
     menuFunc(Menu).
@@ -154,7 +154,7 @@ recomendaAssentoY(2):-
     writeln(H).
 
 recomendaAssentoY(_):-
-    writeln("opção invalida"),
+    writeln("opcao invalida"),
     recomendaAssentoXY(Menu).
 
 
@@ -188,7 +188,7 @@ verificaAssento(Assento,2,Cpf):-
 
 realizaCompraX(Cpf):-
     listaAssentos,
-    writeln("Você deseja comprar um assento: [1] Econômico [2] Executivo"),
+    writeln("Você deseja comprar um assento: [1] Economico [2] Executivo"),
     read(Tipo),
     writeln("Qual assento você deseja?"),
     read(Assento),
@@ -279,7 +279,7 @@ cancelaCompra():-
 
     lerArquivoCsv('compra.csv', Result),
     contemMember(Cpf, Result, Resposta),
-    (Resposta -> writeln("") ; writeln("Não existe compra cadastrada no seu nome"), menuFunc(Menu)),
+    (Resposta -> writeln("") ; writeln("Nao existe compra cadastrada no seu nome"), menuFunc(Menu)),
 
     removegg(Cpf, Result, X),
     remove(X, Result, ComprasRest),

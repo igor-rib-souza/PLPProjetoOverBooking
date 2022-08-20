@@ -88,9 +88,9 @@ alterarFuncionario(Menu):-
       limpaCsv('funcionarios.csv'),
       reescreveFuncionario(FuncionariosExcluidos),
 
-      writeln("Infome o novo nome do usuário:"),
+      writeln("Infome o novo nome do usuario:"),
       read(NovoNome),
-      writeln("Infome o novo cpf do usuário:"),
+      writeln("Infome o novo cpf do usuario:"),
       read(NovoCpf),
       lerArquivoCsv('funcionarios.csv',Resultado3),
       contemMember(NovoCpf, Resultado3, Resultado4),
@@ -137,7 +137,7 @@ alterarDesconto(Menu):-
       cadastroAlterado.
 
 listaTodosFuncionarios:-
-      writeln("\n       -----TODOS OS FUNCINÁRIOS ATIVOS NO SISTEMA!-----\n"),
+      writeln("\n       -----TODOS OS FUNCINARIOS ATIVOS NO SISTEMA!-----\n"),
       lerArquivoCsv('funcionarios.csv',Resultado),
       writeln(Resultado).
 
